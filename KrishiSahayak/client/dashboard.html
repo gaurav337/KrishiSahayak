@@ -1,21 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Krishi Sahayak</title>
+    <title>कृषि सहायक डैशबोर्ड</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chat-window {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #suggestion-modal {
+            transition: opacity 0.3s;
+        }
+        #suggestion-modal .modal-content {
+            transition: transform 0.3s;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-gray-800">
+<body class="text-slate-800">
 
+    <!-- --- Navbar --- -->
     <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -35,7 +46,7 @@
                     <a href="my-profile.html" class="block p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-300">
                         <span class="sr-only">My Profile</span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-600">
-                          <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
                         </svg>
                     </a>
                     <button class="ml-4 bg-red-500 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:bg-red-600 transition-all duration-300">Logout</button>
@@ -44,147 +55,245 @@
         </div>
     </nav>
 
-    <main class="max-w-screen-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
+    <!-- --- Main Content --- -->
+    <main class="flex-grow">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-slate-900">Welcome back, Farmer!</h1>
+                <p class="text-slate-500 mt-1">Monday, September 15, 2025 • 06:18 PM • Prayagraj, UP</p>
+            </div>
 
-            <div class="lg:col-span-2 space-y-8">
-                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-900">Welcome back, Farmer!</h1>
-                        <p class="text-md text-gray-500 mt-1">Monday, September 15, 2025 • 06:11 PM • Prayagraj, UP</p>
-                    </div>
-                    <a href="#" class="w-full sm:w-auto text-center bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-green-700 transition-all duration-300">
-                        + Log New Expense
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                        <h3 class="font-bold text-xl text-gray-800 mb-4">Today's Weather 🌦️</h3>
-                        <div class="flex items-center gap-4 mb-4">
-                            <p class="text-5xl font-bold text-gray-900">29°C</p>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 text-yellow-400">
-                                  <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM17.894 17.894a.75.75 0 011.06 0l1.59 1.591a.75.75 0 11-1.06 1.06l-1.591-1.59a.75.75 0 010-1.061zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM6.106 17.894a.75.75 0 010-1.06l-1.59-1.591a.75.75 0 11-1.061 1.06l1.59 1.59a.75.75 0 011.06 0zM1.5 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H2.25A.75.75 0 011.5 12zM6.106 6.106a.75.75 0 011.06 0l1.591 1.59a.75.75 0 01-1.06 1.061l-1.591-1.59A.75.75 0 016.106 6.106z" />
-                                </svg>
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main Content Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Today's Weather Card -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h2 class="font-bold text-lg mb-4 text-slate-800">Today's Weather 🌦️</h2>
+                            <div class="flex items-center">
+                                <p class="text-5xl font-bold text-slate-800">29°C</p>
+                                <div class="ml-4">
+                                    <p class="font-semibold">Partly Cloudy</p>
+                                    <p class="text-sm text-slate-500">Feels Like: 32°C</p>
+                                    <p class="text-sm text-slate-500">Humidity: 78%</p>
+                                </div>
                             </div>
-                            <p class="font-semibold text-lg text-gray-700">Partly Cloudy</p>
+                            <div class="mt-4 bg-blue-50 text-blue-700 p-3 rounded-lg text-sm">
+                                High humidity today. Good time to check crops for fungal signs.
+                            </div>
+                            <button id="weather-advisory-btn" class="mt-4 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Get Weather Advisory</button>
                         </div>
-                        <div class="text-sm text-gray-600 space-y-1 mb-4">
-                            <p><strong>Feels Like:</strong> 32°C</p>
-                            <p><strong>Humidity:</strong> 78%</p>
-                            <p><strong>Wind:</strong> 10 km/h</p>
-                        </div>
-                        <div class="bg-blue-50 text-blue-800 p-3 rounded-lg text-sm text-center font-medium">
-                            High humidity today. Good time to check crops for fungal signs.
+
+                        <!-- AI-Powered Tasks Card -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="font-bold text-lg text-slate-800">Today's Priority Tasks 🎯</h2>
+                                <button class="text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full hover:bg-green-200">+ Add Task</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg">🚜</div>
+                                        <div class="ml-3">
+                                            <p class="font-semibold text-slate-800">Rabi Wheat Sowing Prep</p>
+                                            <p class="text-xs text-slate-500">Field preparation</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-semibold text-green-600 bg-green-100 px-2.5 py-1 rounded-full">Done</span>
+                                </div>
+                                <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg">🐛</div>
+                                        <div class="ml-3">
+                                            <p class="font-semibold text-slate-800">Paddy Pest Check</p>
+                                            <p class="text-xs text-slate-500">Monitor for stem borer</p>
+                                        </div>
+                                    </div>
+                                     <span class="text-xs font-semibold text-orange-600 bg-orange-100 px-2.5 py-1 rounded-full">Pending</span>
+                                </div>
+                                 <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-lg">🛒</div>
+                                        <div class="ml-3">
+                                            <p class="font-semibold text-slate-800">Mustard Seed Purchase</p>
+                                            <p class="text-xs text-slate-500">Planning for Rabi season</p>
+                                        </div>
+                                    </div>
+                                     <span class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full">Upcoming</span>
+                                </div>
+                            </div>
+                            <button id="task-suggestion-btn" class="mt-5 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Get AI Task Suggestions</button>
                         </div>
                     </div>
-                    
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                        <h3 class="font-bold text-xl text-gray-800 mb-4">Tasks for Sept 15th ✅</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3"><span class="font-bold text-green-600 mt-1">✓</span><span>Prepare field for <strong>Rabi wheat sowing</strong>.</span></li>
-                            <li class="flex items-start gap-3"><span class="font-bold text-green-600 mt-1">✓</span><span>Check <strong>paddy crop</strong> for pest damage.</span></li>
-                            <li class="flex items-start gap-3"><span class="font-bold text-green-600 mt-1">✓</span><span>Plan purchase of <strong>mustard seeds</strong>.</span></li>
-                        </ul>
-                        <a href="#" class="text-green-600 hover:underline font-semibold mt-4 block text-right">View All Tasks →</a>
+
+                    <!-- Market Prices & Crop Status -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Current Mandi Prices Card -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h2 class="font-bold text-lg mb-4 text-slate-800">Current Mandi Prices 🌾</h2>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium text-slate-700">Paddy (Rice)</span>
+                                    <span class="font-bold">₹2,185/quintal <span class="text-green-500">↑</span></span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium text-slate-700">Maize</span>
+                                    <span class="font-bold">₹1,950/quintal <span class="text-red-500">↓</span></span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium text-slate-700">Moong (Green Gram)</span>
+                                    <span class="font-bold">₹7,750/quintal <span class="text-green-500">↑</span></span>
+                                </div>
+                            </div>
+                             <button id="market-analysis-btn" class="mt-4 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Analyze Market Prices</button>
+                        </div>
+
+                        <!-- Current Crop Status Card -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                             <h2 class="font-bold text-lg mb-4 text-slate-800">Current Crop Status 🌱</h2>
+                             <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm font-medium mb-1"><span>Paddy</span><span>80% - Grain Filling</span></div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 80%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm font-medium mb-1"><span>Maize</span><span>90% - Ready for Harvest</span></div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 90%"></div></div>
+                                </div>
+                             </div>
+                             <a href="#" class="text-green-600 font-semibold mt-4 block text-sm">Open Farm View →</a>
+                        </div>
                     </div>
-                    
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                         <h3 class="font-bold text-xl text-gray-800 mb-4">Current Mandi Prices 🌾</h3>
-                         <div class="space-y-3">
-                             <div class="flex justify-between items-center"><p>Paddy (Rice)</p><p class="font-bold">₹2,185/quintal <span class="text-red-500">↓</span></p></div>
-                             <div class="flex justify-between items-center"><p>Maize</p><p class="font-bold">₹1,950/quintal <span class="text-green-500">↑</span></p></div>
-                             <div class="flex justify-between items-center"><p>Moong (Green Gram)</p><p class="font-bold">₹7,750/quintal <span class="text-red-500">↓</span></p></div>
-                         </div>
-                         <a href="#" class="text-green-600 hover:underline font-semibold mt-4 block text-right">View Full Market Report →</a>
+
+                    <!-- Pest & Disease Diagnosis Card -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="font-bold text-lg mb-4 text-slate-800">Pest & Disease Diagnosis 📸</h2>
+                        <p class="text-slate-600 text-sm mb-4">Upload a photo of an affected crop leaf to get an AI-powered diagnosis and solution.</p>
+                        <div id="image-preview-container" class="mb-4 hidden w-full h-40 border-2 border-dashed rounded-lg flex items-center justify-center bg-slate-50">
+                            <img id="image-preview" src="" alt="Image Preview" class="max-h-full max-w-full rounded">
+                        </div>
+                        <input type="file" id="image-upload" class="hidden" accept="image/*">
+                        <button id="upload-btn" class="w-full text-sm font-semibold text-blue-700 bg-blue-50 px-4 py-2.5 rounded-lg hover:bg-blue-100 mb-2">Upload Image</button>
+                        <button id="diagnose-btn" class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50" disabled>✨ Diagnose Problem</button>
                     </div>
-                    
-                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                        <h3 class="font-bold text-xl text-gray-800 mb-4">Current Crop Status 🌱</h3>
+
+                    <!-- Kharif Season Financials Card -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="font-bold text-lg mb-4 text-slate-800">Kharif Season Financials 💸</h2>
                         <div class="space-y-4">
                             <div>
-                                <div class="flex justify-between font-semibold text-sm mb-1"><span>Paddy</span><span>80% - Grain Filling</span></div>
-                                <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-green-500 h-4 rounded-full" style="width: 80%"></div></div>
+                                <div class="flex justify-between items-center text-sm mb-1">
+                                    <span class="font-medium">Total Expenses:</span>
+                                    <span class="font-bold text-red-500">₹45,500</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-red-400 h-2.5 rounded-full" style="width: 49%"></div>
+                                </div>
                             </div>
                             <div>
-                                <div class="flex justify-between font-semibold text-sm mb-1"><span>Maize</span><span>90% - Ready for Harvest</span></div>
-                                <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-green-500 h-4 rounded-full" style="width: 90%"></div></div>
+                                <div class="flex justify-between items-center text-sm mb-1">
+                                    <span class="font-medium">Projected Revenue:</span>
+                                    <span class="font-bold text-green-500">₹92,000</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-green-400 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                    
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t">
+                                <div>
+                                    <h3 class="font-semibold mb-2 text-slate-700">Expense Breakdown</h3>
+                                    <div class="space-y-2 text-sm text-slate-600">
+                                        <div class="flex justify-between"><span>Seeds & Sowing:</span><span>₹12,000</span></div>
+                                        <div class="flex justify-between"><span>Fertilizer & Pesticides:</span><span>₹18,500</span></div>
+                                        <div class="flex justify-between"><span>Labor & Irrigation:</span><span>₹15,000</span></div>
+                                        <div class="flex justify-between border-t mt-2 pt-2 font-bold text-slate-800"><span>Total:</span><span>₹45,500</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4 flex flex-col items-center justify-center text-center">
+                                    <h3 class="font-semibold text-green-800">Estimated Net Profit</h3>
+                                    <p class="text-3xl font-bold text-green-600 mt-1">~ ₹46,500</p>
+                                </div>
                             </div>
                         </div>
-                        <a href="#" class="text-green-600 hover:underline font-semibold mt-4 block text-right">Open Farm View →</a>
+                        <button id="financial-analysis-btn" class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Get Financial Analysis</button>
                     </div>
+
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                    <h3 class="font-bold text-xl text-gray-800 mb-4">Kharif Season Financials</h3>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center gap-3">
-                            <span class="w-32 text-sm font-semibold text-gray-600">Total Expenses:</span>
-                            <div class="flex-1 bg-red-400 h-6 rounded animate-pulse"></div>
-                            <span class="font-bold text-red-700">₹45,500</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="w-32 text-sm font-semibold text-gray-600">Projected Revenue:</span>
-                            <div class="flex-1 bg-green-400 h-6 rounded animate-pulse" style="width: 100%;"></div>
-                            <span class="font-bold text-green-700">₹92,000</span>
-                        </div>
+                <!-- Right Sidebar Column -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                         <h2 class="font-bold text-lg mb-4 text-slate-800">Recent Activity 🕒</h2>
+                         <ul class="space-y-4">
+                            <li class="flex items-start"><span class="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✔</span><p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Task Completed:</span> Checked paddy for pest damage. <span class="block text-xs text-slate-400">Yesterday</span></p></li>
+                            <li class="flex items-start"><span class="flex-shrink-0 h-5 w-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">₹</span><p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Expense Logged:</span> ₹8,500 for DAP Fertilizer. <span class="block text-xs text-slate-400">2 days ago</span></p></li>
+                            <li class="flex items-start"><span class="flex-shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">!</span><p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Weather Alert:</span> High humidity warning was issued. <span class="block text-xs text-slate-400">2 days ago</span></p></li>
+                         </ul>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 border-t pt-6">
-                        <div>
-                            <h4 class="font-semibold text-gray-700 mb-2">Expense Breakdown</h4>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li class="flex justify-between"><span>Seeds & Sowing:</span> <span>₹12,000</span></li>
-                                <li class="flex justify-between"><span>Fertilizer & Pesticides:</span> <span>₹18,500</span></li>
-                                <li class="flex justify-between"><span>Labor & Irrigation:</span> <span>₹15,000</span></li>
-                                <li class="flex justify-between border-t mt-1 pt-1 font-bold"><span>Total:</span> <span>₹45,500</span></li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-col justify-center items-center bg-green-50 p-4 rounded-lg">
-                            <h4 class="font-semibold text-gray-700">Estimated Net Profit</h4>
-                            <p class="text-4xl font-extrabold text-green-600 mt-2">~ ₹46,500</p>
-                        </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                         <h2 class="font-bold text-lg mb-4 text-slate-800">Knowledge Base 📚</h2>
+                         <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">How to manage Yellow Stem Borer in Paddy</a></li>
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Latest government subsidy schemes</a></li>
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Soil health card benefits and application</a></li>
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Contact Local Agriculture Officer</a></li>
+                         </ul>
                     </div>
                 </div>
             </div>
-
-            <div class="space-y-8 mt-8 lg:mt-0">
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                    <h3 class="font-bold text-xl text-gray-800 mb-4">Recent Activity</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3 text-sm">
-                            <div class="bg-green-100 p-1.5 rounded-full mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-green-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z" clip-rule="evenodd" /></svg></div>
-                            <div><p class="text-gray-800"><strong>Task Completed:</strong> Checked paddy for pest damage.</p><p class="text-xs text-gray-500">Yesterday</p></div>
-                        </li>
-                         <li class="flex items-start gap-3 text-sm">
-                            <div class="bg-red-100 p-1.5 rounded-full mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-red-600"><path d="M2.879 7.121A3 3 0 017.5 5h5a3 3 0 012.621 2.121L17 12a3 3 0 01-2.621 3.879h-1.838a.75.75 0 00-.75.75v1.25a.75.75 0 01-.75.75h-2.5a.75.75 0 01-.75-.75v-1.25a.75.75 0 00-.75-.75h-1.838A3 3 0 013 12l1.879-4.879zM10 12a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg></div>
-                            <div><p class="text-gray-800"><strong>Expense Logged:</strong> ₹8,500 for DAP Fertilizer.</p><p class="text-xs text-gray-500">2 days ago</p></div>
-                        </li>
-                        <li class="flex items-start gap-3 text-sm">
-                            <div class="bg-blue-100 p-1.5 rounded-full mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-blue-600"><path d="M10 2a.75.75 0 01.75.75v.756a4.5 4.5 0 012.252 6.42l1.477 1.477a.75.75 0 01-1.06 1.06l-1.477-1.477a4.5 4.5 0 01-6.42-2.252V2.75A.75.75 0 0110 2z" /><path d="M3.105 5.568a.75.75 0 011.06-1.06l1.477 1.477a4.5 4.5 0 016.42 2.252v.756a.75.75 0 01-1.5 0v-.756a3 3 0 00-2.06-2.812L8.5 7.5a.75.75 0 01-1.06-1.06l-1.477-1.477A4.5 4.5 0 015.598 2.75v-.756a.75.75 0 011.5 0v.756a3 3 0 002.06 2.812L11.5 7.5a.75.75 0 011.06 1.06l1.477 1.477a4.5 4.5 0 01-2.252 6.42v.756a.75.75 0 01-1.5 0v-.756a3 3 0 00-2.812-2.06L7.5 11.5a.75.75 0 01-1.06-1.06l-1.477-1.477a4.5 4.5 0 01-2.252-6.42v-.756a.75.75 0 011.5 0v.756a3 3 0 002.812 2.06L8.5 8.5a.75.75 0 011.06 1.06l1.477 1.477a3 3 0 002.06 2.812v.756a.75.75 0 01-1.5 0v-.756a4.5 4.5 0 01-6.42-2.252l-1.477-1.477a.75.75 0 01-1.06-1.06l1.477-1.477A3 3 0 005.598 5.5v.756a.75.75 0 01-1.5 0V5.5a4.5 4.5 0 01-1.06-1.06l-1.477-1.477a.75.75 0 01-1.06 1.06L3.105 5.568z" /></svg></div>
-                            <div><p class="text-gray-800"><strong>Weather Alert:</strong> High humidity warning was issued.</p><p class="text-xs text-gray-500">2 days ago</p></div>
-                        </li>
-                        <li class="flex items-start gap-3 text-sm">
-                            <div class="bg-purple-100 p-1.5 rounded-full mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-purple-600"><path fill-rule="evenodd" d="M15.962 2.962a1.5 1.5 0 011.06 2.56l-1.06 1.06c.033.111.06.223.082.336l2.037.788a1.5 1.5 0 01.95 1.772l-.307 1.15a1.5 1.5 0 01-1.458 1.156h-1.64a1.5 1.5 0 01-1.492-1.312l-.24-1.202a1.5 1.5 0 00-1.28-1.28l-1.201-.24a1.5 1.5 0 01-1.313-1.492v-1.64a1.5 1.5 0 011.156-1.458l1.15-.307a1.5 1.5 0 011.772.95l.788 2.037c.113.022.225.049.336.082l1.06-1.06a1.5 1.5 0 012.561 1.06zM6.5 4.5a1.5 1.5 0 012.56 1.06l-1.06 1.06a3.5 3.5 0 00-1.012 3.824l-1.08 3.242a1.5 1.5 0 01-2.822-1.034l1.08-3.242a1.5 1.5 0 011.274-1.638l1.06-1.06a1.5 1.5 0 011.06-2.56z" clip-rule="evenodd" /></svg></div>
-                            <div><p class="text-gray-800"><strong>Crop Added:</strong> Maize (Plot B)</p><p class="text-xs text-gray-500">3 weeks ago</p></div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200/80">
-                    <h3 class="font-bold text-xl text-gray-800 mb-4">Knowledge Base</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-green-700 hover:underline">› How to manage Yellow Stem Borer in Paddy</a></li>
-                        <li><a href="#" class="text-green-700 hover:underline">› Latest government subsidy schemes</a></li>
-                        <li><a href="#" class="text-green-700 hover:underline">› Soil health card benefits and application</a></li>
-                        <li><a href="#" class="text-green-700 hover:underline">› Contact Local Agriculture Officer</a></li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </main>
     
+    <!-- --- Chatbot --- -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+         <!-- Chat button will be rendered here by JS -->
+    </div>
+    <div id="chatbot-window" class="fixed bottom-24 right-6 w-80 h-[28rem] bg-white rounded-xl shadow-2xl flex flex-col z-50 hidden opacity-0 -translate-y-4">
+        <div class="bg-green-600 text-white p-4 rounded-t-xl font-bold flex justify-between items-center flex-shrink-0">
+            <span>Farm Assistant</span>
+            <button id="close-chat-btn" class="p-1 rounded-full hover:bg-green-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div id="chat-body" class="flex-grow p-4 overflow-y-auto space-y-4 min-h-0"></div>
+        <form id="chat-form" class="p-3 border-t bg-slate-50 rounded-b-xl flex-shrink-0">
+            <div class="relative">
+                <input id="chat-input" type="text" placeholder="अपना सवाल लिखें..." class="w-full px-4 py-2 pr-12 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button type="submit" class="absolute inset-y-0 right-0 flex items-center justify-center w-10 h-10 text-green-600 hover:text-green-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" transform="rotate(45) translate(0, -2)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- --- AI Suggestion Modal --- -->
+    <div id="suggestion-modal" class="fixed inset-0 z-50 items-center justify-center p-4" style="display: none;">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="fixed inset-0 bg-black/60"></div>
+        
+        <!-- Modal Content -->
+        <div class="modal-content relative w-full max-w-lg bg-white rounded-lg shadow-xl border-2 border-green-500 scale-95 opacity-0">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-5 border-b">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-lg">✨</div>
+                    <h3 id="modal-title" class="text-lg font-bold text-slate-800 ml-3">AI Suggestion</h3>
+                </div>
+                <button id="modal-close-btn" class="p-1 rounded-full text-slate-400 hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <!-- Body -->
+            <div id="modal-content-body" class="p-6 text-slate-600 max-h-[60vh] overflow-y-auto">
+                <!-- AI suggestion will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- --- Footer --- -->
     <footer class="bg-gray-900" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
@@ -267,41 +376,297 @@
             <p class="text-xs leading-5 text-gray-400">&copy; 2025 Krishi Sahayak. All rights reserved.</p>
           </div>
         </div>
-      </footer>
-      
-      <script>
-        // Self-contained script for the language dropdown functionality
-        document.addEventListener('DOMContentLoaded', () => {
-          const langButton = document.getElementById('language-menu-button');
-          const langMenu = document.getElementById('language-menu');
-          const selectedLanguageSpan = document.getElementById('selected-language');
-          const langOptions = document.querySelectorAll('.language-option');
-      
-          if (langButton && langMenu && selectedLanguageSpan && langOptions) {
-            // Toggle menu visibility when the button is clicked
-            langButton.addEventListener('click', (event) => {
-              event.stopPropagation(); // Prevents the window click listener from firing immediately
-              langMenu.classList.toggle('hidden');
+    </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- DOM ELEMENT REFERENCES ---
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatBtn = document.getElementById('close-chat-btn');
+    const chatBody = document.getElementById('chat-body');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const marketAnalysisBtn = document.getElementById('market-analysis-btn');
+    const taskSuggestionBtn = document.getElementById('task-suggestion-btn');
+    const financialAnalysisBtn = document.getElementById('financial-analysis-btn');
+    const weatherAdvisoryBtn = document.getElementById('weather-advisory-btn');
+    const imageUpload = document.getElementById('image-upload');
+    const uploadBtn = document.getElementById('upload-btn');
+    const diagnoseBtn = document.getElementById('diagnose-btn');
+    const imagePreviewContainer = document.getElementById('image-preview-container');
+    const imagePreview = document.getElementById('image-preview');
+
+
+    // Modal elements
+    const suggestionModal = document.getElementById('suggestion-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalContentContainer = suggestionModal.querySelector('.modal-content');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContentBody = document.getElementById('modal-content-body');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    // Footer Language Selector
+    const langMenuBtn = document.getElementById('language-menu-button');
+    const langMenu = document.getElementById('language-menu');
+    const selectedLang = document.getElementById('selected-language');
+    const langOptions = document.querySelectorAll('.language-option');
+
+
+    // --- STATE MANAGEMENT ---
+    let chatMessages = [ { sender: 'model', text: 'नमस्ते! मैं फार्म मित्र हूँ। आप खेती के बारे में कुछ भी पूछ सकते हैं।' } ];
+    let isChatLoading = false;
+    let uploadedFileBase64 = null;
+
+
+    // --- GEMINI API CONFIG ---
+    const API_KEY = ""; // Leave empty
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+
+    // --- MODAL FUNCTIONS ---
+    function showModal(title, content) {
+        modalTitle.textContent = title;
+        modalContentBody.innerHTML = content;
+        suggestionModal.style.display = 'flex';
+        setTimeout(() => {
+            suggestionModal.style.opacity = 1;
+            modalContentContainer.classList.remove('scale-95', 'opacity-0');
+            modalContentContainer.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function hideModal() {
+        modalContentContainer.classList.add('scale-95', 'opacity-0');
+        suggestionModal.style.opacity = 0;
+        setTimeout(() => {
+            suggestionModal.style.display = 'none';
+        }, 300);
+    }
+
+    // --- RENDER FUNCTIONS ---
+    function renderChatMessages() {
+        chatBody.innerHTML = '';
+        chatMessages.forEach(msg => addMessageToChat(msg.text, msg.sender));
+        if (isChatLoading) {
+            const loadingBubble = document.createElement('div');
+            loadingBubble.className = 'flex justify-start';
+            loadingBubble.innerHTML = `<p class="max-w-xs px-4 py-2 rounded-2xl bg-slate-200 text-slate-800 rounded-bl-none animate-pulse">...</p>`;
+            chatBody.appendChild(loadingBubble);
+        }
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+    
+    function addMessageToChat(text, sender) {
+        const messageWrapper = document.createElement('div');
+        messageWrapper.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+        const messageBubble = document.createElement('p');
+        messageBubble.className = `max-w-xs px-4 py-2 rounded-2xl ${sender === 'user' ? 'bg-blue-500 text-white rounded-br-none' : 'bg-slate-200 text-slate-800 rounded-bl-none'}`;
+        messageBubble.textContent = text;
+        messageWrapper.appendChild(messageBubble);
+        chatBody.appendChild(messageWrapper);
+    }
+    
+    function renderChatButton() {
+        chatbotContainer.innerHTML = `
+            <button id="chatbot-toggle-btn" class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition-transform transform hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+            </button>
+        `;
+        document.getElementById('chatbot-toggle-btn').addEventListener('click', toggleChatWindow);
+    }
+
+    function toggleChatWindow() {
+         const isHidden = chatbotWindow.classList.contains('hidden');
+        if(isHidden) {
+            chatbotWindow.classList.remove('hidden');
+            setTimeout(() => {
+                chatbotWindow.classList.remove('opacity-0', '-translate-y-4');
+            }, 10);
+        } else {
+            chatbotWindow.classList.add('opacity-0', '-translate-y-4');
+            setTimeout(() => {
+                chatbotWindow.classList.add('hidden');
+            }, 300);
+        }
+    }
+
+    async function callGeminiAPI(payload, targetButton, title) {
+        const originalButtonText = targetButton.innerHTML;
+        targetButton.disabled = true;
+        targetButton.innerHTML = '🧠 Analyzing...';
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
-      
-            // Update button text and close menu when an option is clicked
-            langOptions.forEach(option => {
-              option.addEventListener('click', (event) => {
-                event.preventDefault();
-                selectedLanguageSpan.textContent = event.target.textContent;
-                langMenu.classList.add('hidden');
-              });
+            const result = await response.json();
+            let text = result.candidates?.[0]?.content?.parts?.[0]?.text.replace(/\*/g, '') || "No result found.";
+            
+            let modalHTML;
+            if (targetButton.id === 'task-suggestion-btn') {
+                const tasks = text.split('\n').filter(line => line.trim().match(/^\d\./));
+                modalHTML = '<div class="space-y-3">';
+                tasks.forEach(task => {
+                    modalHTML += `
+                        <div class="flex justify-between items-center bg-slate-50 p-3 rounded-lg">
+                            <span class="text-sm text-slate-700">${task}</span>
+                            <button class="text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full hover:bg-green-200">+ Add Task</button>
+                        </div>
+                    `;
+                });
+                modalHTML += '</div>';
+            } else {
+                modalHTML = `<div class="prose prose-sm max-w-none">${text.replace(/\n/g, '<br>')}</div>`;
+            }
+
+            showModal(title, modalHTML);
+
+        } catch (error) {
+            console.error("Gemini API Error:", error);
+            showModal(title, `<p>Error connecting to the assistant.</p>`);
+        } finally {
+            targetButton.disabled = false;
+            targetButton.innerHTML = originalButtonText;
+        }
+    }
+
+    async function handleChatSubmit(e) {
+        e.preventDefault();
+        const userQuery = chatInput.value.trim();
+        if (!userQuery || isChatLoading) return;
+        
+        chatMessages.push({ sender: 'user', text: userQuery });
+        chatInput.value = '';
+        isChatLoading = true;
+        renderChatMessages();
+
+        const chatHistory = chatMessages.map(msg => ({
+            role: msg.sender === 'user' ? 'user' : 'model',
+            parts: [{ text: msg.text }]
+        }));
+
+        const systemPrompt = "You are a friendly and helpful agricultural assistant for farmers in India. Your name is 'Farm Mitra'. You provide simple, clear, and actionable advice. Respond in the same language as the user's query. If the query is in Hinglish, respond in simple Hindi with some English words.";
+
+        const payload = { 
+            contents: chatHistory, 
+            systemInstruction: { parts: [{ text: systemPrompt }] } 
+        };
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
-      
-            // Close the dropdown if the user clicks outside of it
-            window.addEventListener('click', (event) => {
-              if (!langMenu.classList.contains('hidden') && !langButton.contains(event.target)) {
-                langMenu.classList.add('hidden');
-              }
-            });
-          }
+            const result = await response.json();
+            const modelResponse = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I didn't understand.";
+            chatMessages.push({ sender: 'model', text: modelResponse });
+        } catch (error) {
+            console.error("Chatbot error:", error);
+            chatMessages.push({ sender: 'model', text: "An error occurred. Please try again." });
+        } finally {
+            isChatLoading = false;
+            renderChatMessages();
+        }
+    }
+
+    // --- EVENT LISTENERS ---
+    
+    closeChatBtn.addEventListener('click', toggleChatWindow);
+    chatForm.addEventListener('submit', handleChatSubmit);
+
+    // Modal listeners
+    modalCloseBtn.addEventListener('click', hideModal);
+    modalBackdrop.addEventListener('click', hideModal);
+
+    marketAnalysisBtn.addEventListener('click', () => {
+        const prompt = "I'm a farmer in Prayagraj, UP. It's mid-September. Current mandi prices are: Paddy at ₹2,185/quintal, Maize at ₹1,950/quintal, and Moong at ₹7,750/quintal. Provide a one-sentence analysis for each crop on whether to sell now or wait. Keep it simple and actionable. Respond in English.";
+        const payload = { contents: [{ parts: [{ text: prompt }] }] };
+        callGeminiAPI(payload, marketAnalysisBtn, "Market Price Analysis");
+    });
+    
+    taskSuggestionBtn.addEventListener('click', () => {
+        const prompt = "I am a farmer in Prayagraj, UP. Today is September 15th. My Paddy crop is at the grain filling stage (80%), and my Maize is almost ready for harvest (90%). What are the 2-3 most critical tasks I should focus on? Please list them as a numbered list (e.g., '1. Task one description'). Respond in English.";
+        const payload = { contents: [{ parts: [{ text: prompt }] }] };
+        callGeminiAPI(payload, taskSuggestionBtn, "AI Task Suggestion");
+    });
+
+    financialAnalysisBtn.addEventListener('click', () => {
+        const prompt = `I am a farmer in Prayagraj, UP. For the current Kharif season, my financials are: Total Expenses ₹45,500 (Seeds: ₹12,000, Fertilizer/Pesticides: ₹18,500, Labor/Irrigation: ₹15,000) and Projected Revenue is ₹92,000. My net profit is estimated at ₹46,500. Provide two simple, actionable suggestions to either reduce expenses or increase revenue for the next season, based on this breakdown. Respond in English.`;
+        const payload = { contents: [{ parts: [{ text: prompt }] }] };
+        callGeminiAPI(payload, financialAnalysisBtn, "AI Financial Analysis");
+    });
+
+    weatherAdvisoryBtn.addEventListener('click', () => {
+        const prompt = `I am a farmer in Prayagraj, UP. Today's weather is 29°C, partly cloudy, with 78% humidity. My current crops are Paddy (at grain filling stage) and Maize (ready for harvest). Give me one simple, actionable piece of advice based on this information. Respond in English.`;
+        const payload = { contents: [{ parts: [{ text: prompt }] }] };
+        callGeminiAPI(payload, weatherAdvisoryBtn, "AI Weather Advisory");
+    });
+
+    // Image Upload & Diagnosis Listeners
+    uploadBtn.addEventListener('click', () => imageUpload.click());
+
+    imageUpload.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            diagnoseBtn.disabled = false;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadedFileBase64 = e.target.result.split(',')[1];
+                imagePreview.src = e.target.result;
+                imagePreviewContainer.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    diagnoseBtn.addEventListener('click', () => {
+        if (uploadedFileBase64) {
+            const prompt = "You are an expert plant pathologist serving small farmers in India. Identify the disease or pest in this image. Provide a clear, simple diagnosis and suggest 1-2 low-cost, actionable remedies. If the image is not a plant, state that clearly. Format the response with 'Diagnosis:' and 'Remedy:' labels. Respond in English.";
+            const payload = {
+                contents: [{
+                    parts: [
+                        { text: prompt },
+                        { inlineData: { mimeType: "image/jpeg", data: uploadedFileBase64 } }
+                    ]
+                }],
+            };
+            callGeminiAPI(payload, diagnoseBtn, "AI Disease Diagnosis");
+        }
+    });
+
+    // Language selector logic
+    if (langMenuBtn) {
+        langMenuBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            langMenu.classList.toggle('hidden');
         });
-      </script>
+
+        langOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectedLang.textContent = e.target.textContent;
+                langMenu.classList.add('hidden');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!langMenu.classList.contains('hidden') && !langMenuBtn.contains(e.target)) {
+                langMenu.classList.add('hidden');
+            }
+        });
+    }
+
+    // --- INITIAL RENDER ---
+    renderChatButton();
+    renderChatMessages();
+});
+</script>
 
 </body>
 </html>
+
