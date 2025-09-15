@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,53 +9,32 @@
     <script src="https://js.puter.com/v2/"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans Devanagari', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #f8fafc;
+            /* slate-50 */
         }
+
         .chat-window {
             transition: opacity 0.3s, transform 0.3s;
         }
+
         #suggestion-modal {
             transition: opacity 0.3s;
         }
+
         #suggestion-modal .modal-content {
             transition: transform 0.3s;
         }
     </style>
 </head>
+
 <body class="text-slate-800">
 
-    <!-- --- Navbar --- -->
-    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="text-2xl sm:text-3xl font-bold text-green-700">Krishi Sahayak</a>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-600 hover:text-green-600 transition-colors duration-300 font-medium">Home</a>
-                    <a href="dashboard.html" class="text-green-600 font-bold transition-colors duration-300">Dashboard</a>
-                    <a href="my-farm.html" class="text-gray-600 hover:text-green-600 transition-colors duration-300 font-medium">My Farm</a>
-                    <a href="market.html" class="text-gray-600 hover:text-green-600 transition-colors duration-300 font-medium">Market Prices</a>
-                    <a href="farm-mitra.html" class="text-gray-600 font-bold transition-colors duration-300">Krishi Sahayak AI</a>
-                </div>
-
-                <div class="flex items-center">
-                    <a href="my-profile.html" class="block p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-300">
-                        <span class="sr-only">My Profile</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-600">
-                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                    <button class="ml-4 bg-red-500 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:bg-red-600 transition-all duration-300">Logout</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-placeholder"></div>
 
     <!-- --- Main Content --- -->
     <main class="flex-grow">
@@ -84,48 +64,63 @@
                             <div class="mt-4 bg-blue-50 text-blue-700 p-3 rounded-lg text-sm">
                                 High humidity today. Good time to check crops for fungal signs.
                             </div>
-                            <button id="weather-advisory-btn" class="mt-4 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Get Weather Advisory</button>
+                            <button id="weather-advisory-btn"
+                                class="mt-4 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨
+                                Get Weather Advisory</button>
                         </div>
 
                         <!-- AI-Powered Tasks Card -->
                         <div class="bg-white rounded-lg shadow-sm p-6">
                             <div class="flex justify-between items-center mb-4">
                                 <h2 class="font-bold text-lg text-slate-800">Today's Priority Tasks 🎯</h2>
-                                <button class="text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full hover:bg-green-200">+ Add Task</button>
+                                <button
+                                    class="text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full hover:bg-green-200">+
+                                    Add Task</button>
                             </div>
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg">🚜</div>
+                                        <div
+                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg">
+                                            🚜</div>
                                         <div class="ml-3">
                                             <p class="font-semibold text-slate-800">Rabi Wheat Sowing Prep</p>
                                             <p class="text-xs text-slate-500">Field preparation</p>
                                         </div>
                                     </div>
-                                    <span class="text-xs font-semibold text-green-600 bg-green-100 px-2.5 py-1 rounded-full">Done</span>
+                                    <span
+                                        class="text-xs font-semibold text-green-600 bg-green-100 px-2.5 py-1 rounded-full">Done</span>
                                 </div>
                                 <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg">🐛</div>
+                                        <div
+                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg">
+                                            🐛</div>
                                         <div class="ml-3">
                                             <p class="font-semibold text-slate-800">Paddy Pest Check</p>
                                             <p class="text-xs text-slate-500">Monitor for stem borer</p>
                                         </div>
                                     </div>
-                                     <span class="text-xs font-semibold text-orange-600 bg-orange-100 px-2.5 py-1 rounded-full">Pending</span>
+                                    <span
+                                        class="text-xs font-semibold text-orange-600 bg-orange-100 px-2.5 py-1 rounded-full">Pending</span>
                                 </div>
-                                 <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
+                                <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-lg">🛒</div>
+                                        <div
+                                            class="flex-shrink-0 h-8 w-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+                                            🛒</div>
                                         <div class="ml-3">
                                             <p class="font-semibold text-slate-800">Mustard Seed Purchase</p>
                                             <p class="text-xs text-slate-500">Planning for Rabi season</p>
                                         </div>
                                     </div>
-                                     <span class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full">Upcoming</span>
+                                    <span
+                                        class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full">Upcoming</span>
                                 </div>
                             </div>
-                            <button id="task-suggestion-btn" class="mt-5 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Get AI Task Suggestions</button>
+                            <button id="task-suggestion-btn"
+                                class="mt-5 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨
+                                Get AI Task Suggestions</button>
                         </div>
                     </div>
 
@@ -148,36 +143,50 @@
                                     <span class="font-bold">₹7,750/quintal <span class="text-green-500">↑</span></span>
                                 </div>
                             </div>
-                             <button id="market-analysis-btn" class="mt-4 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Analyze Market Prices</button>
+                            <button id="market-analysis-btn"
+                                class="mt-4 w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2 rounded-lg hover:bg-green-100 disabled:opacity-50">✨
+                                Analyze Market Prices</button>
                         </div>
 
                         <!-- Current Crop Status Card -->
                         <div class="bg-white rounded-lg shadow-sm p-6">
-                             <h2 class="font-bold text-lg mb-4 text-slate-800">Current Crop Status 🌱</h2>
-                             <div class="space-y-4">
-                                 <div>
-                                     <div class="flex justify-between text-sm font-medium mb-1"><span>Paddy</span><span>80% - Grain Filling</span></div>
-                                     <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 80%"></div></div>
-                                 </div>
-                                 <div>
-                                     <div class="flex justify-between text-sm font-medium mb-1"><span>Maize</span><span>90% - Ready for Harvest</span></div>
-                                     <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 90%"></div></div>
-                                 </div>
-                             </div>
-                             <a href="#" class="text-green-600 font-semibold mt-4 block text-sm">Open Farm View →</a>
+                            <h2 class="font-bold text-lg mb-4 text-slate-800">Current Crop Status 🌱</h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm font-medium mb-1">
+                                        <span>Paddy</span><span>80% - Grain Filling</span></div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm font-medium mb-1">
+                                        <span>Maize</span><span>90% - Ready for Harvest</span></div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="text-green-600 font-semibold mt-4 block text-sm">Open Farm View →</a>
                         </div>
                     </div>
 
                     <!-- Pest & Disease Diagnosis Card -->
                     <div class="bg-white rounded-lg shadow-sm p-6">
                         <h2 class="font-bold text-lg mb-4 text-slate-800">Pest & Disease Diagnosis 📸</h2>
-                        <p class="text-slate-600 text-sm mb-4">Upload a photo of an affected crop leaf to get an AI-powered diagnosis and solution.</p>
-                        <div id="image-preview-container" class="mb-4 hidden w-full h-40 border-2 border-dashed rounded-lg flex items-center justify-center bg-slate-50">
+                        <p class="text-slate-600 text-sm mb-4">Upload a photo of an affected crop leaf to get an
+                            AI-powered diagnosis and solution.</p>
+                        <div id="image-preview-container"
+                            class="mb-4 hidden w-full h-40 border-2 border-dashed rounded-lg flex items-center justify-center bg-slate-50">
                             <img id="image-preview" src="" alt="Image Preview" class="max-h-full max-w-full rounded">
                         </div>
                         <input type="file" id="image-upload" class="hidden" accept="image/*">
-                        <button id="upload-btn" class="w-full text-sm font-semibold text-blue-700 bg-blue-50 px-4 py-2.5 rounded-lg hover:bg-blue-100 mb-2">Upload Image</button>
-                        <button id="diagnose-btn" class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50" disabled>✨ Diagnose Problem</button>
+                        <button id="upload-btn"
+                            class="w-full text-sm font-semibold text-blue-700 bg-blue-50 px-4 py-2.5 rounded-lg hover:bg-blue-100 mb-2">Upload
+                            Image</button>
+                        <button id="diagnose-btn"
+                            class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50"
+                            disabled>✨ Diagnose Problem</button>
                     </div>
 
                     <!-- Kharif Season Financials Card -->
@@ -202,24 +211,31 @@
                                     <div class="bg-green-400 h-2.5 rounded-full" style="width: 100%"></div>
                                 </div>
                             </div>
-                        
+
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t">
                                 <div>
                                     <h3 class="font-semibold mb-2 text-slate-700">Expense Breakdown</h3>
                                     <div class="space-y-2 text-sm text-slate-600">
-                                        <div class="flex justify-between"><span>Seeds & Sowing:</span><span>₹12,000</span></div>
-                                        <div class="flex justify-between"><span>Fertilizer & Pesticides:</span><span>₹18,500</span></div>
-                                        <div class="flex justify-between"><span>Labor & Irrigation:</span><span>₹15,000</span></div>
-                                        <div class="flex justify-between border-t mt-2 pt-2 font-bold text-slate-800"><span>Total:</span><span>₹45,500</span></div>
+                                        <div class="flex justify-between"><span>Seeds &
+                                                Sowing:</span><span>₹12,000</span></div>
+                                        <div class="flex justify-between"><span>Fertilizer &
+                                                Pesticides:</span><span>₹18,500</span></div>
+                                        <div class="flex justify-between"><span>Labor &
+                                                Irrigation:</span><span>₹15,000</span></div>
+                                        <div class="flex justify-between border-t mt-2 pt-2 font-bold text-slate-800">
+                                            <span>Total:</span><span>₹45,500</span></div>
                                     </div>
                                 </div>
-                                <div class="bg-green-50 rounded-lg p-4 flex flex-col items-center justify-center text-center">
+                                <div
+                                    class="bg-green-50 rounded-lg p-4 flex flex-col items-center justify-center text-center">
                                     <h3 class="font-semibold text-green-800">Estimated Net Profit</h3>
                                     <p class="text-3xl font-bold text-green-600 mt-1">~ ₹46,500</p>
                                 </div>
                             </div>
                         </div>
-                        <button id="financial-analysis-btn" class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50 mt-4">✨ Get Financial Analysis</button>
+                        <button id="financial-analysis-btn"
+                            class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50 mt-4">✨
+                            Get Financial Analysis</button>
                     </div>
 
                 </div>
@@ -227,64 +243,102 @@
                 <!-- Right Sidebar Column -->
                 <div class="space-y-6">
                     <div class="bg-white rounded-lg shadow-sm p-6">
-                         <h2 class="font-bold text-lg mb-4 text-slate-800">Recent Activity 🕒</h2>
-                         <ul class="space-y-4">
-                            <li class="flex items-start"><span class="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✔</span><p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Task Completed:</span> Checked paddy for pest damage. <span class="block text-xs text-slate-400">Yesterday</span></p></li>
-                            <li class="flex items-start"><span class="flex-shrink-0 h-5 w-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">₹</span><p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Expense Logged:</span> ₹8,500 for DAP Fertilizer. <span class="block text-xs text-slate-400">2 days ago</span></p></li>
-                            <li class="flex items-start"><span class="flex-shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">!</span><p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Weather Alert:</span> High humidity warning was issued. <span class="block text-xs text-slate-400">2 days ago</span></p></li>
-                         </ul>
+                        <h2 class="font-bold text-lg mb-4 text-slate-800">Recent Activity 🕒</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><span
+                                    class="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✔</span>
+                                <p class="ml-3 text-sm text-slate-600"><span class="font-semibold text-slate-800">Task
+                                        Completed:</span> Checked paddy for pest damage. <span
+                                        class="block text-xs text-slate-400">Yesterday</span></p>
+                            </li>
+                            <li class="flex items-start"><span
+                                    class="flex-shrink-0 h-5 w-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs">₹</span>
+                                <p class="ml-3 text-sm text-slate-600"><span
+                                        class="font-semibold text-slate-800">Expense Logged:</span> ₹8,500 for DAP
+                                    Fertilizer. <span class="block text-xs text-slate-400">2 days ago</span></p>
+                            </li>
+                            <li class="flex items-start"><span
+                                    class="flex-shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs">!</span>
+                                <p class="ml-3 text-sm text-slate-600"><span
+                                        class="font-semibold text-slate-800">Weather Alert:</span> High humidity warning
+                                    was issued. <span class="block text-xs text-slate-400">2 days ago</span></p>
+                            </li>
+                        </ul>
                     </div>
                     <div class="bg-white rounded-lg shadow-sm p-6">
-                         <h2 class="font-bold text-lg mb-4 text-slate-800">Knowledge Base 📚</h2>
-                         <ul class="space-y-3">
-                            <li><a href="#" class="text-sm text-blue-600 hover:underline">How to manage Yellow Stem Borer in Paddy</a></li>
-                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Latest government subsidy schemes</a></li>
-                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Soil health card benefits and application</a></li>
-                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Contact Local Agriculture Officer</a></li>
-                         </ul>
+                        <h2 class="font-bold text-lg mb-4 text-slate-800">Knowledge Base 📚</h2>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">How to manage Yellow Stem
+                                    Borer in Paddy</a></li>
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Latest government subsidy
+                                    schemes</a></li>
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Soil health card benefits and
+                                    application</a></li>
+                            <li><a href="#" class="text-sm text-blue-600 hover:underline">Contact Local Agriculture
+                                    Officer</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    
+
     <!-- --- Chatbot --- -->
     <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
-          <!-- Chat button will be rendered here by JS -->
+        <!-- Chat button will be rendered here by JS -->
     </div>
-    <div id="chatbot-window" class="fixed bottom-24 right-6 w-80 h-[28rem] bg-white rounded-xl shadow-2xl flex flex-col z-50 hidden opacity-0 -translate-y-4 chat-window">
+    <div id="chatbot-window"
+        class="fixed bottom-24 right-6 w-80 h-[28rem] bg-white rounded-xl shadow-2xl flex flex-col z-50 hidden opacity-0 -translate-y-4 chat-window">
         <div class="bg-green-600 text-white p-4 rounded-t-xl font-bold flex justify-between items-center flex-shrink-0">
             <span>Farm Assistant</span>
             <button id="close-chat-btn" class="p-1 rounded-full hover:bg-green-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
             </button>
         </div>
         <div id="chat-body" class="flex-grow p-4 overflow-y-auto space-y-4 min-h-0"></div>
         <form id="chat-form" class="p-3 border-t bg-slate-50 rounded-b-xl flex-shrink-0">
             <div class="relative">
-                <input id="chat-input" type="text" placeholder="अपना सवाल लिखें..." class="w-full px-4 py-2 pr-12 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                <button type="submit" class="absolute inset-y-0 right-0 flex items-center justify-center w-10 h-10 text-green-600 hover:text-green-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" transform="rotate(45) translate(0, -2)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                <input id="chat-input" type="text" placeholder="अपना सवाल लिखें..."
+                    class="w-full px-4 py-2 pr-12 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button type="submit"
+                    class="absolute inset-y-0 right-0 flex items-center justify-center w-10 h-10 text-green-600 hover:text-green-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" transform="rotate(45) translate(0, -2)">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
                 </button>
             </div>
         </form>
     </div>
 
     <!-- --- AI Suggestion Modal --- -->
-    <div id="suggestion-modal" class="fixed inset-0 z-50 items-center justify-center p-4" style="display: none; opacity: 0;">
+    <div id="suggestion-modal" class="fixed inset-0 z-50 items-center justify-center p-4"
+        style="display: none; opacity: 0;">
         <!-- Backdrop -->
         <div id="modal-backdrop" class="fixed inset-0 bg-black/60"></div>
-        
+
         <!-- Modal Content -->
-        <div class="modal-content relative w-full max-w-lg bg-white rounded-lg shadow-xl border-2 border-green-500 scale-95 opacity-0">
+        <div
+            class="modal-content relative w-full max-w-lg bg-white rounded-lg shadow-xl border-2 border-green-500 scale-95 opacity-0">
             <!-- Header -->
             <div class="flex items-center justify-between p-5 border-b">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 h-8 w-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-lg">✨</div>
+                    <div
+                        class="flex-shrink-0 h-8 w-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-lg">
+                        ✨</div>
                     <h3 id="modal-title" class="text-lg font-bold text-slate-800 ml-3">AI Suggestion</h3>
                 </div>
                 <button id="modal-close-btn" class="p-1 rounded-full text-slate-400 hover:bg-slate-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
                 </button>
             </div>
             <!-- Body -->
@@ -294,251 +348,236 @@
         </div>
     </div>
 
-    <!-- --- Footer --- -->
-    <footer class="bg-gray-900" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" class="sr-only">Footer</h2>
-        <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                <div class="space-y-8">
-                    <a href="#" class="flex items-center space-x-3">
-                         <span class="text-2xl font-bold text-white">Krishi Sahayak</span>
-                    </a>
-                    <p class="text-sm leading-6 text-gray-300">Empowering the Indian farmer with data-driven insights for a prosperous future. Your trusted partner in agriculture.</p>
-                </div>
-            </div>
-            <div class="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-                <p class="text-xs leading-5 text-gray-400">&copy; 2025 Krishi Sahayak. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
 
-    // --- DOM ELEMENT REFERENCES ---
-    const chatbotWindow = document.getElementById('chatbot-window');
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const closeChatBtn = document.getElementById('close-chat-btn');
-    const chatBody = document.getElementById('chat-body');
-    const chatForm = document.getElementById('chat-form');
-    const chatInput = document.getElementById('chat-input');
-    const marketAnalysisBtn = document.getElementById('market-analysis-btn');
-    const taskSuggestionBtn = document.getElementById('task-suggestion-btn');
-    const financialAnalysisBtn = document.getElementById('financial-analysis-btn');
-    const weatherAdvisoryBtn = document.getElementById('weather-advisory-btn');
-    const imageUpload = document.getElementById('image-upload');
-    const uploadBtn = document.getElementById('upload-btn');
-    const diagnoseBtn = document.getElementById('diagnose-btn');
-    const imagePreviewContainer = document.getElementById('image-preview-container');
-    const imagePreview = document.getElementById('image-preview');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-
-    // Modal elements
-    const suggestionModal = document.getElementById('suggestion-modal');
-    const modalBackdrop = document.getElementById('modal-backdrop');
-    const modalContentContainer = suggestionModal.querySelector('.modal-content');
-    const modalTitle = document.getElementById('modal-title');
-    const modalContentBody = document.getElementById('modal-content-body');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
+            // --- DOM ELEMENT REFERENCES ---
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const closeChatBtn = document.getElementById('close-chat-btn');
+            const chatBody = document.getElementById('chat-body');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const marketAnalysisBtn = document.getElementById('market-analysis-btn');
+            const taskSuggestionBtn = document.getElementById('task-suggestion-btn');
+            const financialAnalysisBtn = document.getElementById('financial-analysis-btn');
+            const weatherAdvisoryBtn = document.getElementById('weather-advisory-btn');
+            const imageUpload = document.getElementById('image-upload');
+            const uploadBtn = document.getElementById('upload-btn');
+            const diagnoseBtn = document.getElementById('diagnose-btn');
+            const imagePreviewContainer = document.getElementById('image-preview-container');
+            const imagePreview = document.getElementById('image-preview');
 
 
-    // --- STATE MANAGEMENT ---
-    let chatMessages = [ { sender: 'model', text: 'नमस्ते! मैं फार्म मित्र हूँ। आप खेती के बारे में कुछ भी पूछ सकते हैं।' } ];
-    let isChatLoading = false;
-    let uploadedImageDataUrl = null;
+            // Modal elements
+            const suggestionModal = document.getElementById('suggestion-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalContentContainer = suggestionModal.querySelector('.modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContentBody = document.getElementById('modal-content-body');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
 
 
-    // --- MODAL FUNCTIONS ---
-    function showModal(title, content) {
-        modalTitle.textContent = title;
-        modalContentBody.innerHTML = content;
-        suggestionModal.style.display = 'flex';
-        setTimeout(() => {
-            suggestionModal.style.opacity = 1;
-            modalContentContainer.classList.remove('scale-95', 'opacity-0');
-            modalContentContainer.classList.add('scale-100', 'opacity-100');
-        }, 10);
-    }
+            // --- STATE MANAGEMENT ---
+            let chatMessages = [{ sender: 'model', text: 'नमस्ते! मैं फार्म मित्र हूँ। आप खेती के बारे में कुछ भी पूछ सकते हैं।' }];
+            let isChatLoading = false;
+            let uploadedImageDataUrl = null;
 
-    function hideModal() {
-        modalContentContainer.classList.add('scale-95', 'opacity-0');
-        suggestionModal.style.opacity = 0;
-        setTimeout(() => {
-            suggestionModal.style.display = 'none';
-        }, 300);
-    }
 
-    // --- RENDER FUNCTIONS ---
-    function renderChatMessages() {
-        chatBody.innerHTML = '';
-        chatMessages.forEach(msg => addMessageToChat(msg.text, msg.sender));
-        if (isChatLoading) {
-            const loadingBubble = document.createElement('div');
-            loadingBubble.className = 'flex justify-start';
-            loadingBubble.innerHTML = `<p class="max-w-xs px-4 py-2 rounded-2xl bg-slate-200 text-slate-800 rounded-bl-none animate-pulse">...</p>`;
-            chatBody.appendChild(loadingBubble);
-        }
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-    
-    function addMessageToChat(text, sender) {
-        const messageWrapper = document.createElement('div');
-        messageWrapper.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
-        const messageBubble = document.createElement('p');
-        messageBubble.className = `max-w-xs px-4 py-2 rounded-2xl ${sender === 'user' ? 'bg-blue-500 text-white rounded-br-none' : 'bg-slate-200 text-slate-800 rounded-bl-none'}`;
-        messageBubble.textContent = text;
-        messageWrapper.appendChild(messageBubble);
-        chatBody.appendChild(messageWrapper);
-    }
-    
-    function renderChatButton() {
-        chatbotContainer.innerHTML = `
+            // --- MODAL FUNCTIONS ---
+            function showModal(title, content) {
+                modalTitle.textContent = title;
+                modalContentBody.innerHTML = content;
+                suggestionModal.style.display = 'flex';
+                setTimeout(() => {
+                    suggestionModal.style.opacity = 1;
+                    modalContentContainer.classList.remove('scale-95', 'opacity-0');
+                    modalContentContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function hideModal() {
+                modalContentContainer.classList.add('scale-95', 'opacity-0');
+                suggestionModal.style.opacity = 0;
+                setTimeout(() => {
+                    suggestionModal.style.display = 'none';
+                }, 300);
+            }
+
+            // --- RENDER FUNCTIONS ---
+            function renderChatMessages() {
+                chatBody.innerHTML = '';
+                chatMessages.forEach(msg => addMessageToChat(msg.text, msg.sender));
+                if (isChatLoading) {
+                    const loadingBubble = document.createElement('div');
+                    loadingBubble.className = 'flex justify-start';
+                    loadingBubble.innerHTML = `<p class="max-w-xs px-4 py-2 rounded-2xl bg-slate-200 text-slate-800 rounded-bl-none animate-pulse">...</p>`;
+                    chatBody.appendChild(loadingBubble);
+                }
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function addMessageToChat(text, sender) {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+                const messageBubble = document.createElement('p');
+                messageBubble.className = `max-w-xs px-4 py-2 rounded-2xl ${sender === 'user' ? 'bg-blue-500 text-white rounded-br-none' : 'bg-slate-200 text-slate-800 rounded-bl-none'}`;
+                messageBubble.textContent = text;
+                messageWrapper.appendChild(messageBubble);
+                chatBody.appendChild(messageWrapper);
+            }
+
+            function renderChatButton() {
+                chatbotContainer.innerHTML = `
             <button id="chatbot-toggle-btn" class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition-transform transform hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
             </button>
         `;
-        document.getElementById('chatbot-toggle-btn').addEventListener('click', toggleChatWindow);
-    }
+                document.getElementById('chatbot-toggle-btn').addEventListener('click', toggleChatWindow);
+            }
 
-    function toggleChatWindow() {
-        const isHidden = chatbotWindow.classList.contains('hidden');
-        if(isHidden) {
-            chatbotWindow.classList.remove('hidden');
-            setTimeout(() => {
-                chatbotWindow.classList.remove('opacity-0', '-translate-y-4');
-            }, 10);
-        } else {
-            chatbotWindow.classList.add('opacity-0', '-translate-y-4');
-            setTimeout(() => {
-                chatbotWindow.classList.add('hidden');
-            }, 300);
-        }
-    }
+            function toggleChatWindow() {
+                const isHidden = chatbotWindow.classList.contains('hidden');
+                if (isHidden) {
+                    chatbotWindow.classList.remove('hidden');
+                    setTimeout(() => {
+                        chatbotWindow.classList.remove('opacity-0', '-translate-y-4');
+                    }, 10);
+                } else {
+                    chatbotWindow.classList.add('opacity-0', '-translate-y-4');
+                    setTimeout(() => {
+                        chatbotWindow.classList.add('hidden');
+                    }, 300);
+                }
+            }
 
-    async function handleAIAssist(prompt, imageUrl, targetButton, title) {
-        const originalButtonText = targetButton.innerHTML;
-        targetButton.disabled = true;
-        targetButton.innerHTML = '🧠 Analyzing...';
+            async function handleAIAssist(prompt, imageUrl, targetButton, title) {
+                const originalButtonText = targetButton.innerHTML;
+                targetButton.disabled = true;
+                targetButton.innerHTML = '🧠 Analyzing...';
 
-        try {
-            const response = await puter.ai.chat(prompt, imageUrl, { model: "gpt-5-nano" });
-            let text = (response.message && response.message.content) ? response.message.content : response;
-            text = text.replace(/\*/g, '');
-            
-            let modalHTML;
-            if (targetButton.id === 'task-suggestion-btn') {
-                const tasks = text.split('\n').filter(line => line.trim().match(/^\d\./));
-                modalHTML = '<div class="space-y-3">';
-                tasks.forEach(task => {
-                    modalHTML += `
+                try {
+                    const response = await puter.ai.chat(prompt, imageUrl, { model: "gpt-5-nano" });
+                    let text = (response.message && response.message.content) ? response.message.content : response;
+                    text = text.replace(/\*/g, '');
+
+                    let modalHTML;
+                    if (targetButton.id === 'task-suggestion-btn') {
+                        const tasks = text.split('\n').filter(line => line.trim().match(/^\d\./));
+                        modalHTML = '<div class="space-y-3">';
+                        tasks.forEach(task => {
+                            modalHTML += `
                         <div class="flex justify-between items-center bg-slate-50 p-3 rounded-lg">
                             <span class="text-sm text-slate-700">${task}</span>
                             <button class="text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full hover:bg-green-200">+ Add Task</button>
                         </div>
                     `;
-                });
-                modalHTML += '</div>';
-            } else {
-                modalHTML = `<div class="prose prose-sm max-w-none">${text.replace(/\n/g, '<br>')}</div>`;
+                        });
+                        modalHTML += '</div>';
+                    } else {
+                        modalHTML = `<div class="prose prose-sm max-w-none">${text.replace(/\n/g, '<br>')}</div>`;
+                    }
+
+                    showModal(title, modalHTML);
+
+                } catch (error) {
+                    console.error("Puter.js AI Error:", error);
+                    showModal(title, `<p>Error connecting to the assistant.</p>`);
+                } finally {
+                    targetButton.disabled = false;
+                    targetButton.innerHTML = originalButtonText;
+                }
             }
 
-            showModal(title, modalHTML);
+            async function handleChatSubmit(e) {
+                e.preventDefault();
+                const userQuery = chatInput.value.trim();
+                if (!userQuery || isChatLoading) return;
 
-        } catch (error) {
-            console.error("Puter.js AI Error:", error);
-            showModal(title, `<p>Error connecting to the assistant.</p>`);
-        } finally {
-            targetButton.disabled = false;
-            targetButton.innerHTML = originalButtonText;
-        }
-    }
+                chatMessages.push({ sender: 'user', text: userQuery });
+                chatInput.value = '';
+                isChatLoading = true;
+                renderChatMessages();
 
-    async function handleChatSubmit(e) {
-        e.preventDefault();
-        const userQuery = chatInput.value.trim();
-        if (!userQuery || isChatLoading) return;
-        
-        chatMessages.push({ sender: 'user', text: userQuery });
-        chatInput.value = '';
-        isChatLoading = true;
-        renderChatMessages();
+                const systemPrompt = "You are a friendly and helpful agricultural assistant for farmers in India. Your name is 'Farm Mitra'. You provide simple, clear, and actionable advice. Respond in the same language as the user's query. If the query is in Hinglish, respond in simple Hindi with some English words.";
 
-        const systemPrompt = "You are a friendly and helpful agricultural assistant for farmers in India. Your name is 'Farm Mitra'. You provide simple, clear, and actionable advice. Respond in the same language as the user's query. If the query is in Hinglish, respond in simple Hindi with some English words.";
+                const context = chatMessages.slice(-4, -1).map(msg => `${msg.sender === 'user' ? 'User' : 'Mitra'}: ${msg.text}`).join('\n');
+                const fullPrompt = `${systemPrompt}\n\nRecent Conversation:\n${context}\n\nUser: ${userQuery}\nMitra:`;
 
-        const context = chatMessages.slice(-4, -1).map(msg => `${msg.sender === 'user' ? 'User' : 'Mitra'}: ${msg.text}`).join('\n');
-        const fullPrompt = `${systemPrompt}\n\nRecent Conversation:\n${context}\n\nUser: ${userQuery}\nMitra:`;
+                try {
+                    const response = await puter.ai.chat(fullPrompt, { model: "gpt-5-nano" });
+                    const modelResponse = (response.message && response.message.content) ? response.message.content : response;
+                    chatMessages.push({ sender: 'model', text: modelResponse });
+                } catch (error) {
+                    console.error("Chatbot error:", error);
+                    chatMessages.push({ sender: 'model', text: "An error occurred. Please try again." });
+                } finally {
+                    isChatLoading = false;
+                    renderChatMessages();
+                }
+            }
 
-        try {
-            const response = await puter.ai.chat(fullPrompt, { model: "gpt-5-nano" });
-            const modelResponse = (response.message && response.message.content) ? response.message.content : response;
-            chatMessages.push({ sender: 'model', text: modelResponse });
-        } catch (error) {
-            console.error("Chatbot error:", error);
-            chatMessages.push({ sender: 'model', text: "An error occurred. Please try again." });
-        } finally {
-            isChatLoading = false;
+            // --- EVENT LISTENERS ---
+
+            closeChatBtn.addEventListener('click', toggleChatWindow);
+            chatForm.addEventListener('submit', handleChatSubmit);
+
+            modalCloseBtn.addEventListener('click', hideModal);
+            modalBackdrop.addEventListener('click', hideModal);
+
+            marketAnalysisBtn.addEventListener('click', () => {
+                const prompt = "I'm a farmer in Lucknow, UP. It's mid-September. Current mandi prices are: Paddy at ₹2,185/quintal, Maize at ₹1,950/quintal, and Moong at ₹7,750/quintal. Provide a one-sentence analysis for each crop on whether to sell now or wait. Keep it simple and actionable. Respond in English.";
+                handleAIAssist(prompt, null, marketAnalysisBtn, "Market Price Analysis");
+            });
+
+            taskSuggestionBtn.addEventListener('click', () => {
+                const prompt = "I am a farmer in Lucknow, UP. Today is September 15th. My Paddy crop is at the grain filling stage (80%), and my Maize is almost ready for harvest (90%). What are the 2-3 most critical tasks I should focus on? Please list them as a numbered list (e.g., '1. Task one description'). Respond in English.";
+                handleAIAssist(prompt, null, taskSuggestionBtn, "AI Task Suggestion");
+            });
+
+            financialAnalysisBtn.addEventListener('click', () => {
+                const prompt = `I am a farmer in Lucknow, UP. For the current Kharif season, my financials are: Total Expenses ₹45,500 (Seeds: ₹12,000, Fertilizer/Pesticides: ₹18,500, Labor/Irrigation: ₹15,000) and Projected Revenue is ₹92,000. My net profit is estimated at ₹46,500. Provide two simple, actionable suggestions to either reduce expenses or increase revenue for the next season, based on this breakdown. Respond in English.`;
+                handleAIAssist(prompt, null, financialAnalysisBtn, "AI Financial Analysis");
+            });
+
+            weatherAdvisoryBtn.addEventListener('click', () => {
+                const prompt = `I am a farmer in Lucknow, UP. Today's weather is 29°C, partly cloudy, with 78% humidity. My current crops are Paddy (at grain filling stage) and Maize (ready for harvest). Give me one simple, actionable piece of advice based on this information. Respond in English.`;
+                handleAIAssist(prompt, null, weatherAdvisoryBtn, "AI Weather Advisory");
+            });
+
+            uploadBtn.addEventListener('click', () => imageUpload.click());
+
+            imageUpload.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    diagnoseBtn.disabled = false;
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        uploadedImageDataUrl = e.target.result;
+                        imagePreview.src = e.target.result;
+                        imagePreviewContainer.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            diagnoseBtn.addEventListener('click', () => {
+                if (uploadedImageDataUrl) {
+                    const prompt = "You are an expert plant pathologist serving small farmers in India. Identify the disease or pest in this image. Provide a clear, simple diagnosis and suggest 1-2 low-cost, actionable remedies. If the image is not a plant, state that clearly. Format the response with 'Diagnosis:' and 'Remedy:' labels. Respond in English.";
+                    handleAIAssist(prompt, uploadedImageDataUrl, diagnoseBtn, "AI Disease Diagnosis");
+                }
+            });
+
+            // --- INITIAL RENDER ---
+            renderChatButton();
             renderChatMessages();
-        }
-    }
-
-    // --- EVENT LISTENERS ---
-    
-    closeChatBtn.addEventListener('click', toggleChatWindow);
-    chatForm.addEventListener('submit', handleChatSubmit);
-
-    modalCloseBtn.addEventListener('click', hideModal);
-    modalBackdrop.addEventListener('click', hideModal);
-
-    marketAnalysisBtn.addEventListener('click', () => {
-        const prompt = "I'm a farmer in Lucknow, UP. It's mid-September. Current mandi prices are: Paddy at ₹2,185/quintal, Maize at ₹1,950/quintal, and Moong at ₹7,750/quintal. Provide a one-sentence analysis for each crop on whether to sell now or wait. Keep it simple and actionable. Respond in English.";
-        handleAIAssist(prompt, null, marketAnalysisBtn, "Market Price Analysis");
-    });
-    
-    taskSuggestionBtn.addEventListener('click', () => {
-        const prompt = "I am a farmer in Lucknow, UP. Today is September 15th. My Paddy crop is at the grain filling stage (80%), and my Maize is almost ready for harvest (90%). What are the 2-3 most critical tasks I should focus on? Please list them as a numbered list (e.g., '1. Task one description'). Respond in English.";
-        handleAIAssist(prompt, null, taskSuggestionBtn, "AI Task Suggestion");
-    });
-
-    financialAnalysisBtn.addEventListener('click', () => {
-        const prompt = `I am a farmer in Lucknow, UP. For the current Kharif season, my financials are: Total Expenses ₹45,500 (Seeds: ₹12,000, Fertilizer/Pesticides: ₹18,500, Labor/Irrigation: ₹15,000) and Projected Revenue is ₹92,000. My net profit is estimated at ₹46,500. Provide two simple, actionable suggestions to either reduce expenses or increase revenue for the next season, based on this breakdown. Respond in English.`;
-        handleAIAssist(prompt, null, financialAnalysisBtn, "AI Financial Analysis");
-    });
-
-    weatherAdvisoryBtn.addEventListener('click', () => {
-        const prompt = `I am a farmer in Lucknow, UP. Today's weather is 29°C, partly cloudy, with 78% humidity. My current crops are Paddy (at grain filling stage) and Maize (ready for harvest). Give me one simple, actionable piece of advice based on this information. Respond in English.`;
-        handleAIAssist(prompt, null, weatherAdvisoryBtn, "AI Weather Advisory");
-    });
-
-    uploadBtn.addEventListener('click', () => imageUpload.click());
-
-    imageUpload.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            diagnoseBtn.disabled = false;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                uploadedImageDataUrl = e.target.result;
-                imagePreview.src = e.target.result;
-                imagePreviewContainer.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    diagnoseBtn.addEventListener('click', () => {
-        if (uploadedImageDataUrl) {
-            const prompt = "You are an expert plant pathologist serving small farmers in India. Identify the disease or pest in this image. Provide a clear, simple diagnosis and suggest 1-2 low-cost, actionable remedies. If the image is not a plant, state that clearly. Format the response with 'Diagnosis:' and 'Remedy:' labels. Respond in English.";
-            handleAIAssist(prompt, uploadedImageDataUrl, diagnoseBtn, "AI Disease Diagnosis");
-        }
-    });
-
-    // --- INITIAL RENDER ---
-    renderChatButton();
-    renderChatMessages();
-});
-</script>
+        });
+    </script>
 
 </body>
-</html>
 
+</html>
