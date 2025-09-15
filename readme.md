@@ -1,0 +1,100 @@
+
+---
+
+# **Krishi Sahayak - A Farmer's Digital Companion**
+
+A static HTML & Tailwind CSS prototype of a comprehensive web application designed to empower farmers with data-driven insights.
+
+⚠️ **Please Note:** This is a **static visual prototype**. The data is for demonstration purposes only, and there is no live backend, database, or user authentication. All pages are built with hard-coded placeholder information to showcase the final vision of the application.
+
+---
+
+## **Core Philosophy**
+
+The design and features of Krishi Sahayak are guided by three principles:
+
+* **Farmer-First:** Every feature is designed to be simple, intuitive, and accessible, even for users with low digital literacy.
+* **Actionable Insights:** The app focuses on providing clear, simple recommendations that a farmer can act on immediately, not just raw data.
+* **Hyper-Personalization:** The final vision is for all advice to be tailored to the farmer's specific farm, soil, location, and resources.
+
+---
+
+## **Technology Stack**
+
+This prototype is built using a simple, serverless frontend stack:
+
+* **HTML5:** For the core structure and content.
+* **CSS3:** For custom styling.
+* **Tailwind CSS:** For the primary utility-first CSS framework, enabling rapid and consistent design.
+
+---
+
+## **Pages & Features**
+
+This prototype consists of five distinct pages, each demonstrating a core aspect of the application.
+
+### **📄 Landing Page (`index.html`)**
+
+This is the public-facing page designed to attract new users and explain the value of Krishi Sahayak.
+
+* **Purpose:** To serve as the "storefront" for the application, convincing farmers to sign up.
+* **Key Features:**
+    * **Hero Section:** A powerful headline ("Smart Kheti, Samriddh Kisan") and a clear call-to-action to immediately capture interest. 
+    * **Features Overview:** A clean grid of cards explaining the four main benefits: AI Advice, Live Market Prices, Expense Tracking, and Smart Weather Alerts.
+    * **How It Works:** A simple, visual 3-step guide that makes the application feel approachable and easy to use.
+    * **Static Authentication:** A non-functional, tabbed UI that demonstrates the intended design for user registration and login.
+
+### **📊 Dashboard (`dashboard.html`)**
+
+This is the user's command center, the first thing they see after "logging in."
+
+* **Purpose:** To provide a high-level, at-a-glance overview of the entire farm's status for quick decision-making.
+* **Key Features:**
+    * **Consistent Layout:** Features a shared header and footer for easy navigation between all internal pages.
+    * **Personalized Welcome:** A static header that greets the "Farmer" and shows the date and location, demonstrating the vision for personalization.
+    * **Two-Column Layout:** A professional layout that organizes a large amount of information cleanly.
+    * **At-a-Glance Cards:** A grid of the most critical real-time data points (Weather, Today's Tasks, Mandi Prices, and Crop Status).
+    * **Financial Snapshot:** A detailed card with a visual bar chart and a breakdown of the current season's expenses, projected revenue, and estimated profit.
+    * **Activity Feed & Resources:** A sidebar showing a log of recent farm activities and a list of helpful articles or contacts.
+    
+
+### **🚜 My Farm (`my-farm.html`)**
+
+This page is the digital twin of the farmer's physical assets and operations.
+
+* **Purpose:** To allow a farmer to manage the specific details of their crops, tasks, and livestock.
+* **Key Features:**
+    * **Farm Overview:** Quick-stat cards summarizing the farmer's total land, plots, and livestock count.
+    * **Tabbed Interface:** A clean and organized UI to switch between different management areas.
+        * **My Crops Tab:** Contains detailed cards for each crop, showcasing their status, area, variety, and financial performance.
+        * **Task Manager Tab:** A comprehensive to-do list with filters for "Pending" and "Completed" tasks.
+        * **My Livestock Tab:** Demonstrates how animal records (breed, age, health) would be managed.
+
+### **📈 Market Intelligence (`market.html`)**
+
+This hub provides the data farmers need to sell their produce at the best possible price.
+
+* **Purpose:** To consolidate market prices, news, and government schemes into one actionable view.
+* **Key Features:**
+    * **Detailed Price Table:** A clean table of commodity prices for a selected (placeholder) Mandi, showing min, max, and modal prices, along with a trend indicator.
+    * **AI Market Analyst:** A special card that demonstrates how the AI would provide simple, text-based insights on market trends (e.g., "Prices are up... good time to sell.").
+    * **News & Schemes:** Sidebars that display the latest agricultural news headlines and summaries of relevant government schemes.
+
+### **🤖 Farm Mitra AI Assistant (`farm-mitra.html`)**
+
+This page showcases the most powerful and innovative feature of the application.
+
+* **Purpose:** To demonstrate how a farmer can interact with a conversational AI to diagnose problems and get expert advice.
+* **Key Features:**
+    * **Realistic Chat UI:** A clean, focused interface that perfectly mimics a real chat application.
+    * **Pre-scripted Conversation:** A static but detailed conversation where a "farmer" asks a question in Hindi about their crop, and "Farm Mitra" provides a step-by-step diagnostic guide, complete with a request to show a photo. This clearly demonstrates the AI's practical, problem-solving capabilities.
+
+---
+
+## **How to View This Prototype**
+
+Since this is a static website, you can view it by following these steps:
+
+1.  Clone or download the project files.
+2.  Navigate to the `client` directory.
+3.  Open any of the `.html` files (starting with `index.html` is recommended) directly in your web browser.
