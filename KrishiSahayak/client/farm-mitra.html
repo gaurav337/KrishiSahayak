@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krishi Sahayak AI - Krishi Sahayak</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.puter.com/v2/"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f7fdf8; /* A very light green background */
+        }
+        /* Add a simple animation for chat bubbles appearing */
+        @keyframes popIn {
+            0% { transform: scale(0.9) translateY(10px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .chat-bubble {
+            animation: popIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        #chat-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chat-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        #chat-body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        #chat-body::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        #image-modal {
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-gray-800">
+<body class="text-gray-800">
 
     <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,14 +54,14 @@
                     <a href="dashboard.html" class="text-gray-600 hover:text-green-600 transition-colors duration-300 font-medium">Dashboard</a>
                     <a href="my-farm.html" class="text-gray-600 hover:text-green-600 transition-colors duration-300 font-medium">My Farm</a>
                     <a href="market.html" class="text-gray-600 hover:text-green-600 transition-colors duration-300 font-medium">Market Prices</a>
-                    <a href="farm-mitra.html" class="text-green-600 font-bold transition-colors duration-300">Krishi Sahayak AI</a>
+                    <a href="farm-mitra.html" class="text-green-600 font-bold transition-colors duration-300 border-b-2 border-green-600 pb-1">Krishi Sahayak AI</a>
                 </div>
 
                 <div class="flex items-center">
                     <a href="my-profile.html" class="block p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-300">
                         <span class="sr-only">My Profile</span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-600">
-                          <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
                         </svg>
                     </a>
                     <button class="ml-4 bg-red-500 text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:bg-red-600 transition-all duration-300">Logout</button>
@@ -45,84 +71,70 @@
     </nav>
 
     <main class="max-w-screen-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-900">Krishi Sahayak AI Assistant <span class="text-3xl font-medium text-green-700">(फार्म मित्र एआई सहायक)</span></h1>
-            <p class="mt-2 text-lg text-gray-600">Your personal agriculture expert. Ask any question about your crops, pests, or market prices.</p>
+        <div class="text-center mb-10">
+             <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Krishi Sahayak AI <span class="text-green-600">Assistant</span></h1>
+            <p class="mt-3 text-lg text-gray-500 max-w-2xl mx-auto">Your personal agriculture expert. Ask about crops, pests, or market prices.</p>
         </div>
 
-        <div class="mx-auto max-w-2xl h-[70vh] bg-white rounded-2xl shadow-2xl flex flex-col border border-gray-200/80">
-            
-            <div class="flex-grow p-6 space-y-6 overflow-y-auto">
-                <div class="flex justify-start">
-                    <div class="max-w-md">
-                        <div class="bg-gray-200 text-gray-800 p-3 rounded-xl rounded-bl-none">
-                            <p>Namaste! I am Krishi Sahayak, your personal AI assistant. How can I help you with your farming today?</p>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1 px-1">6:18 PM</p>
-                    </div>
+        <div class="mx-auto max-w-3xl h-[75vh] bg-white rounded-2xl shadow-2xl flex flex-col border border-gray-200/80">
+            <div class="p-4 border-b flex items-center bg-gray-50 rounded-t-2xl">
+                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1.447-.894l-4 2A1 1 0 0011 7v10zM4 17a1 1 0 001.447.894l4-2A1 1 0 0010 15V5a1 1 0 00-1.447-.894l-4 2A1 1 0 004 7v10z" />
+                    </svg>
                 </div>
-
-                <div class="flex justify-end">
-                    <div class="max-w-md text-right">
-                        <div class="bg-green-600 text-white p-3 rounded-xl rounded-br-none">
-                            <p>मेरी धान की फसल में पत्तियां पीली पड़ रही हैं। क्या करूँ?</p>
-                            <p class="text-green-100 text-sm">(My paddy crop's leaves are turning yellow. What should I do?)</p>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1 px-1">6:18 PM</p>
-                    </div>
-                </div>
-
-                <div class="flex justify-start">
-                    <div class="max-w-md space-y-2">
-                        <div class="bg-gray-200 text-gray-800 p-3 rounded-xl rounded-bl-none">
-                            <p>Analyzing your query... Yellowing leaves in paddy in the Prayagraj region during September can be caused by a few issues. Let me help you diagnose.</p>
-                        </div>
-                        <div class="bg-gray-200 text-gray-800 p-3 rounded-xl rounded-bl-none">
-                            <p class="mb-2">This is likely either a <strong>Nitrogen deficiency</strong> or a pest like the <strong>Yellow Stem Borer</strong>.</p>
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li><strong>To check for Stem Borer:</strong> Go to a yellowing plant and pull the central leaf (the 'tiller'). If it comes out easily, it is a sign of 'dead heart' caused by the borer.</li>
-                                <li><strong>If it's Nitrogen deficiency:</strong> A top dressing of Urea fertilizer may be needed.</li>
-                            </ul>
-                            <p class="mt-3">Would you like me to show you a photo of Stem Borer damage for comparison?</p>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1 px-1">6:19 PM</p>
-                    </div>
-                </div>
-
-                <div class="flex justify-end">
-                    <div class="max-w-md text-right">
-                        <div class="bg-green-600 text-white p-3 rounded-xl rounded-br-none">
-                            <p>Yes, show photo.</p>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1 px-1">6:19 PM</p>
-                    </div>
-                </div>
-
-                <div class="flex justify-start">
-                    <div class="max-w-md">
-                        <div class="bg-gray-200 text-gray-800 p-3 rounded-xl rounded-bl-none">
-                            <p class="mb-2">Here is a photo of a paddy plant affected by Yellow Stem Borer. Does this look like the problem in your field?</p>
-                            <img src="https://images.pexels.com/photos/10398335/pexels-photo-10398335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Paddy plant with stem borer damage" class="rounded-lg mt-2">
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1 px-1">6:19 PM</p>
-                    </div>
+                <div>
+                    <h2 class="font-bold text-lg text-gray-800">Farm Mitra AI</h2>
+                    <p class="text-sm text-green-600 flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-1.5"></span>Online</p>
                 </div>
             </div>
+            
+            <div id="chat-body" class="flex-grow p-6 space-y-6 overflow-y-auto bg-white">
+                <!-- Chat messages will be rendered here dynamically -->
+            </div>
 
-            <div class="p-4 bg-white border-t border-gray-200">
-                <div class="flex items-center space-x-3">
-                    <input type="text" placeholder="Type your question here... (अपना सवाल यहाँ लिखें...)" class="flex-grow p-3 px-4 bg-gray-100 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
-                    <button class="flex-shrink-0 h-12 w-12 bg-green-600 text-white rounded-full flex items-center justify-center shadow-md hover:bg-green-700 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
-                          <path d="M3.105 3.105a.75.75 0 011.06 0l11.25 11.25a.75.75 0 01-1.06 1.06l-11.25-11.25a.75.75 0 010-1.06z" />
-                          <path d="M3.105 16.895a.75.75 0 010-1.06l11.25-11.25a.75.75 0 011.06 1.06l-11.25 11.25a.75.75 0 01-1.06 0z" />
+            <div id="image-preview-bar" class="p-3 border-t bg-gray-100 hidden">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img id="preview-thumbnail" src="" class="w-10 h-10 rounded object-cover">
+                        <span id="preview-filename" class="text-sm ml-3 text-gray-600 font-medium">Image selected</span>
+                    </div>
+                    <button id="clear-image-btn" class="p-1 rounded-full text-gray-500 hover:bg-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 </div>
             </div>
 
+            <div class="p-4 bg-gray-50 border-t border-gray-200/80 rounded-b-2xl">
+                <form id="chat-form" class="flex items-center space-x-3">
+                     <button type="button" id="upload-image-btn" class="flex-shrink-0 h-11 w-11 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <input type="file" id="image-upload-input" class="hidden" accept="image/*">
+                    <input id="chat-input" type="text" placeholder="Type your question or describe your image..." class="flex-grow p-3 px-5 h-12 bg-white rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm" autocomplete="off">
+                    <button id="chat-submit-btn" type="submit" class="flex-shrink-0 h-12 w-12 bg-green-600 text-white rounded-full flex items-center justify-center shadow-md hover:bg-green-700 transition-all transform hover:scale-105 disabled:bg-gray-400 disabled:scale-100">
+                        <svg id="send-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 -mr-0.5" viewBox="0 0 20 20" fill="currentColor">
+                           <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                        </svg>
+                         <div id="loading-spinner" class="hidden animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    </button>
+                </form>
+            </div>
+
         </div>
     </main>
+    
+    <!-- Image Viewer Modal -->
+    <div id="image-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black bg-opacity-75 hidden opacity-0">
+        <div class="relative max-w-4xl max-h-[80vh] w-full">
+            <img id="modal-image" src="" alt="Full size image" class="object-contain w-full h-full rounded-lg">
+            <button id="close-modal-btn" class="absolute -top-3 -right-3 h-8 w-8 bg-white rounded-full text-black flex items-center justify-center text-2xl font-bold">&times;</button>
+        </div>
+    </div>
     
     <footer class="bg-gray-900" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
@@ -139,15 +151,15 @@
               <div class="flex space-x-6">
                 <a href="#" class="text-gray-400 hover:text-green-500">
                   <span class="sr-only">Facebook</span>
-                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
                 </a>
                 <a href="#" class="text-gray-400 hover:text-green-500">
                   <span class="sr-only">Twitter</span>
-                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
                 </a>
                 <a href="#" class="text-gray-400 hover:text-green-500">
                   <span class="sr-only">YouTube</span>
-                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.505 2.505 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.419zM9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.421z" clip-rule="evenodd" /></svg>
+                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.505 2.505 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.419zM9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.421z" clip-rule="evenodd"></path></svg>
                 </a>
               </div>
             </div>
@@ -186,7 +198,7 @@
                     <button type="button" id="language-menu-button" class="flex w-full items-center justify-between rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                       <span id="selected-language">English</span>
                       <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
                       </svg>
                     </button>
                     
@@ -209,7 +221,7 @@
       </footer>
       
       <script>
-        // Self-contained script for the language dropdown functionality
+        // --- LANGUAGE DROPDOWN SCRIPT ---
         document.addEventListener('DOMContentLoaded', () => {
           const langButton = document.getElementById('language-menu-button');
           const langMenu = document.getElementById('language-menu');
@@ -217,13 +229,11 @@
           const langOptions = document.querySelectorAll('.language-option');
       
           if (langButton && langMenu && selectedLanguageSpan && langOptions) {
-            // Toggle menu visibility when the button is clicked
             langButton.addEventListener('click', (event) => {
-              event.stopPropagation(); // Prevents the window click listener from firing immediately
+              event.stopPropagation();
               langMenu.classList.toggle('hidden');
             });
       
-            // Update button text and close menu when an option is clicked
             langOptions.forEach(option => {
               option.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -232,7 +242,6 @@
               });
             });
       
-            // Close the dropdown if the user clicks outside of it
             window.addEventListener('click', (event) => {
               if (!langMenu.classList.contains('hidden') && !langButton.contains(event.target)) {
                 langMenu.classList.add('hidden');
@@ -242,5 +251,225 @@
         });
       </script>
 
+      <script>
+        // --- MODAL HELPER FUNCTIONS (Global Scope) ---
+        function showImageModal(src) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        
+        // --- MAIN CHAT SCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const chatBody = document.getElementById('chat-body');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const chatSubmitBtn = document.getElementById('chat-submit-btn');
+            const sendIcon = document.getElementById('send-icon');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const uploadImageBtn = document.getElementById('upload-image-btn');
+            const imageUploadInput = document.getElementById('image-upload-input');
+            const imageModal = document.getElementById('image-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const imagePreviewBar = document.getElementById('image-preview-bar');
+            const previewThumbnail = document.getElementById('preview-thumbnail');
+            const previewFilename = document.getElementById('preview-filename');
+            const clearImageBtn = document.getElementById('clear-image-btn');
+
+
+            // --- STATE MANAGEMENT ---
+            let isLoading = false;
+            let pendingImageFile = null;
+            let messages = [
+                {
+                    sender: 'ai',
+                    text: 'Namaste! I am Krishi Sahayak. Ask me a question or upload a crop photo for diagnosis.',
+                    type: 'text'
+                }
+            ];
+            
+            // --- RENDER FUNCTIONS ---
+            const renderMessages = () => {
+                chatBody.innerHTML = '';
+                messages.forEach(msg => {
+                    const messageContainer = document.createElement('div');
+                    messageContainer.className = `flex items-end gap-3 chat-bubble ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`;
+
+                    const icon = document.createElement('div');
+                    icon.className = `flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${msg.sender === 'user' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'}`;
+                    icon.innerHTML = msg.sender === 'user' 
+                        ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>`
+                        : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1.447-.894l-4 2A1 1 0 0011 7v10zM4 17a1 1 0 001.447.894l4-2A1 1 0 0010 15V5a1 1 0 00-1.447-.894l-4 2A1 1 0 004 7v10z" /></svg>`;
+                    
+                    const messageBubble = document.createElement('div');
+                    messageBubble.className = 'max-w-md';
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = `${msg.sender === 'user' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-800'} p-3 rounded-xl ${msg.sender === 'user' ? 'rounded-br-none' : 'rounded-bl-xl'}`;
+                    
+                    if (msg.type === 'image') {
+                        const textContent = msg.text ? `<p class="mb-2">${msg.text}</p>` : '';
+                        contentDiv.innerHTML = `${textContent}<img src="${msg.imageUrl}" alt="${msg.alt}" class="rounded-lg mt-2 max-w-xs cursor-pointer" onclick="showImageModal(this.src)">`;
+                    } else if (msg.type === 'loading-image') {
+                         contentDiv.innerHTML = `<p class="mb-2">${msg.text}</p><div class="flex items-center justify-center h-40 bg-gray-300 rounded-lg mt-2 animate-pulse"><p class="text-gray-500 text-sm">Generating image...</p></div>`;
+                    }
+                    else {
+                        contentDiv.innerHTML = msg.text.replace(/\n/g, '<br>');
+                    }
+
+                    messageBubble.appendChild(contentDiv);
+                    
+                    if (msg.sender === 'user') {
+                        messageContainer.appendChild(messageBubble);
+                        messageContainer.appendChild(icon);
+                    } else {
+                        messageContainer.appendChild(icon);
+                        messageContainer.appendChild(messageBubble);
+                    }
+
+                    chatBody.appendChild(messageContainer);
+                });
+                chatBody.scrollTop = chatBody.scrollHeight;
+            };
+
+            // --- UI & STATE HELPER FUNCTIONS ---
+            const setLoadingState = (loading) => {
+                isLoading = loading;
+                chatSubmitBtn.disabled = loading;
+                if (loading) {
+                    sendIcon.classList.add('hidden');
+                    loadingSpinner.classList.remove('hidden');
+                } else {
+                    sendIcon.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                }
+            };
+
+            const clearPendingImage = () => {
+                pendingImageFile = null;
+                imageUploadInput.value = ''; // Reset file input
+                imagePreviewBar.classList.add('hidden');
+            };
+
+            // --- CORE LOGIC ---
+            const handleFormSubmit = async (e) => {
+                e.preventDefault();
+                const userInput = chatInput.value.trim();
+
+                if ((!userInput && !pendingImageFile) || isLoading) return;
+
+                setLoadingState(true);
+
+                if (pendingImageFile) {
+                    // Handle image submission
+                    const reader = new FileReader();
+                    reader.onload = async (event) => {
+                        const imageUrl = event.target.result;
+                        const userText = userInput || "Please analyze this image of my crop.";
+                        messages.push({ sender: 'user', text: userText, type: 'image', imageUrl: imageUrl, alt: 'User uploaded crop image'});
+                        renderMessages();
+
+                        try {
+                            const defaultPrompt = "You are an expert plant pathologist. Analyze this image of a crop leaf. Identify any visible diseases or pests. Provide a clear diagnosis and suggest simple, actionable remedies suitable for a small farmer in India.";
+                            const finalPrompt = userInput ? `${defaultPrompt}\n\nUser question: "${userInput}"` : defaultPrompt;
+                            const response = await puter.ai.chat(finalPrompt, imageUrl, { model: 'gpt-5-nano' });
+                            
+                            const textResponse = response.message?.content || response;
+                            messages.push({ sender: 'ai', text: textResponse, type: 'text' });
+                        } catch (error) {
+                            console.error("Puter.js image analysis error:", error);
+                            messages.push({ sender: 'ai', text: 'Sorry, I had trouble analyzing the image. Please try again.', type: 'text' });
+                        } finally {
+                            setLoadingState(false);
+                            renderMessages();
+                        }
+                    };
+                    reader.readAsDataURL(pendingImageFile);
+                    clearPendingImage();
+                } else {
+                    // Handle text-only submission
+                    messages.push({ sender: 'user', text: userInput, type: 'text' });
+                    renderMessages();
+                    
+                    const tools = [{
+                        type: "function",
+                        function: {
+                            name: "show_pest_image",
+                            description: "Displays a photo of a specific agricultural pest or disease to the user.",
+                            parameters: {
+                                type: "object",
+                                properties: { pest_name: { type: "string", description: "The common name of the pest or disease, e.g., 'Yellow Stem Borer in paddy', 'wheat rust'" } },
+                                required: ["pest_name"]
+                            }
+                        }
+                    }];
+                    
+                    try {
+                        const response = await puter.ai.chat(userInput, { model: 'gpt-5-nano', tools: tools });
+
+                        if (response.message && response.message.tool_calls) {
+                            const toolCall = response.message.tool_calls[0];
+                            if (toolCall.function.name === 'show_pest_image') {
+                                const args = JSON.parse(toolCall.function.arguments);
+                                const pestName = args.pest_name;
+
+                                messages.push({ sender: 'ai', text: `Certainly, generating a photo of ${pestName}...`, type: 'loading-image' });
+                                renderMessages();
+                                
+                                const imageElement = await puter.ai.txt2img(`Photorealistic image of ${pestName} damage on a crop leaf`, { model: 'dall-e-3' });
+                                
+                                messages.pop();
+                                messages.push({ sender: 'ai', text: `Here is a photo of ${pestName}. Does this look like the problem in your field?`, type: 'image', imageUrl: imageElement.src, alt: `Image of ${pestName}` });
+                            }
+                        } else {
+                            const textResponse = response.message?.content || response;
+                            messages.push({ sender: 'ai', text: textResponse, type: 'text' });
+                        }
+                    } catch (error) {
+                        console.error("Puter.js error:", error);
+                        messages.push({ sender: 'ai', text: 'Sorry, I am having trouble connecting. Please try again.', type: 'text' });
+                    } finally {
+                        setLoadingState(false);
+                        renderMessages();
+                    }
+                }
+                chatInput.value = ''; // Clear input after any submission
+            };
+
+            const handleImageSelect = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                pendingImageFile = file;
+                previewThumbnail.src = URL.createObjectURL(file);
+                previewFilename.textContent = file.name;
+                imagePreviewBar.classList.remove('hidden');
+                chatInput.focus();
+            };
+
+            const hideImageModal = () => {
+                imageModal.classList.add('opacity-0');
+                setTimeout(() => imageModal.classList.add('hidden'), 300);
+            };
+            
+            // --- EVENT LISTENERS ---
+            chatForm.addEventListener('submit', handleFormSubmit);
+            uploadImageBtn.addEventListener('click', () => imageUploadInput.click());
+            imageUploadInput.addEventListener('change', handleImageSelect);
+            clearImageBtn.addEventListener('click', clearPendingImage);
+            closeModalBtn.addEventListener('click', hideImageModal);
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) hideImageModal();
+            });
+
+            // --- INITIALIZATION ---
+            renderMessages();
+        });
+      </script>
+
 </body>
 </html>
+
