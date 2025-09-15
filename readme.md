@@ -141,3 +141,21 @@ Since this is a static website, you can view it by following these steps:
 1.  Clone or download the project files.
 2.  Navigate to the `client` directory.
 3.  Open any of the `.html` files (starting with `index.html` is recommended) directly in your web browser.
+
+## Or
+## [Krishi Sahayak - Smart Farming, Prosperous Farmer](https://gaurav337.github.io/KrishiSahayak/KrishiSahayak/client/index.html#)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
