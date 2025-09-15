@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>कृषि सहायक डैशबोर्ड</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.puter.com/v2/"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -61,7 +62,7 @@
             <!-- Header -->
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-slate-900">Welcome back, Farmer!</h1>
-                <p class="text-slate-500 mt-1">Monday, September 15, 2025 • 06:18 PM • Prayagraj, UP</p>
+                <p class="text-slate-500 mt-1">Monday, September 15, 2025 • 08:07 PM • Lucknow, UP</p>
             </div>
 
             <!-- Dashboard Grid -->
@@ -154,14 +155,14 @@
                         <div class="bg-white rounded-lg shadow-sm p-6">
                              <h2 class="font-bold text-lg mb-4 text-slate-800">Current Crop Status 🌱</h2>
                              <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between text-sm font-medium mb-1"><span>Paddy</span><span>80% - Grain Filling</span></div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 80%"></div></div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between text-sm font-medium mb-1"><span>Maize</span><span>90% - Ready for Harvest</span></div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 90%"></div></div>
-                                </div>
+                                 <div>
+                                     <div class="flex justify-between text-sm font-medium mb-1"><span>Paddy</span><span>80% - Grain Filling</span></div>
+                                     <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 80%"></div></div>
+                                 </div>
+                                 <div>
+                                     <div class="flex justify-between text-sm font-medium mb-1"><span>Maize</span><span>90% - Ready for Harvest</span></div>
+                                     <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: 90%"></div></div>
+                                 </div>
                              </div>
                              <a href="#" class="text-green-600 font-semibold mt-4 block text-sm">Open Farm View →</a>
                         </div>
@@ -201,7 +202,7 @@
                                     <div class="bg-green-400 h-2.5 rounded-full" style="width: 100%"></div>
                                 </div>
                             </div>
-                    
+                        
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t">
                                 <div>
                                     <h3 class="font-semibold mb-2 text-slate-700">Expense Breakdown</h3>
@@ -218,7 +219,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="financial-analysis-btn" class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50">✨ Get Financial Analysis</button>
+                        <button id="financial-analysis-btn" class="w-full text-sm font-semibold text-green-700 bg-green-50 px-4 py-2.5 rounded-lg hover:bg-green-100 disabled:opacity-50 mt-4">✨ Get Financial Analysis</button>
                     </div>
 
                 </div>
@@ -249,9 +250,9 @@
     
     <!-- --- Chatbot --- -->
     <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
-         <!-- Chat button will be rendered here by JS -->
+          <!-- Chat button will be rendered here by JS -->
     </div>
-    <div id="chatbot-window" class="fixed bottom-24 right-6 w-80 h-[28rem] bg-white rounded-xl shadow-2xl flex flex-col z-50 hidden opacity-0 -translate-y-4">
+    <div id="chatbot-window" class="fixed bottom-24 right-6 w-80 h-[28rem] bg-white rounded-xl shadow-2xl flex flex-col z-50 hidden opacity-0 -translate-y-4 chat-window">
         <div class="bg-green-600 text-white p-4 rounded-t-xl font-bold flex justify-between items-center flex-shrink-0">
             <span>Farm Assistant</span>
             <button id="close-chat-btn" class="p-1 rounded-full hover:bg-green-700">
@@ -270,7 +271,7 @@
     </div>
 
     <!-- --- AI Suggestion Modal --- -->
-    <div id="suggestion-modal" class="fixed inset-0 z-50 items-center justify-center p-4" style="display: none;">
+    <div id="suggestion-modal" class="fixed inset-0 z-50 items-center justify-center p-4" style="display: none; opacity: 0;">
         <!-- Backdrop -->
         <div id="modal-backdrop" class="fixed inset-0 bg-black/60"></div>
         
@@ -297,84 +298,17 @@
     <footer class="bg-gray-900" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-          <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div class="space-y-8">
-              <a href="#" class="flex items-center space-x-3">
-                <svg class="h-10 w-auto text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                </svg>
-                <span class="text-2xl font-bold text-white">Krishi Sahayak</span>
-              </a>
-              <p class="text-sm leading-6 text-gray-300">Empowering the Indian farmer with data-driven insights for a prosperous future. Your trusted partner in agriculture.</p>
-              <div class="flex space-x-6">
-                <a href="#" class="text-gray-400 hover:text-green-500">
-                  <span class="sr-only">Facebook</span>
-                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-green-500">
-                  <span class="sr-only">Twitter</span>
-                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-green-500">
-                  <span class="sr-only">YouTube</span>
-                  <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.505 2.505 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.419zM9.5 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842l-5.576 3.584a.5.5 0 0 1-.77-.421z" clip-rule="evenodd" /></svg>
-                </a>
-              </div>
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8">
+                    <a href="#" class="flex items-center space-x-3">
+                         <span class="text-2xl font-bold text-white">Krishi Sahayak</span>
+                    </a>
+                    <p class="text-sm leading-6 text-gray-300">Empowering the Indian farmer with data-driven insights for a prosperous future. Your trusted partner in agriculture.</p>
+                </div>
             </div>
-            <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div class="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 class="text-sm font-semibold leading-6 text-white">Product</h3>
-                  <ul role="list" class="mt-6 space-y-4">
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Features</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">How It Works</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Pricing</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Download App</a></li>
-                  </ul>
-                </div>
-                <div class="mt-10 md:mt-0">
-                  <h3 class="text-sm font-semibold leading-6 text-white">Company</h3>
-                  <ul role="list" class="mt-6 space-y-4">
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">About Us</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Blog</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Careers</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Contact Us</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 class="text-sm font-semibold leading-6 text-white">Legal</h3>
-                  <ul role="list" class="mt-6 space-y-4">
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Privacy Policy</a></li>
-                    <li><a href="#" class="text-sm leading-6 text-gray-300 hover:text-green-400">Terms of Service</a></li>
-                  </ul>
-                </div>
-                <div class="mt-10 md:mt-0">
-                  <h3 class="text-sm font-semibold leading-6 text-white">Language</h3>
-                  <div class="relative mt-6">
-                    <button type="button" id="language-menu-button" class="flex w-full items-center justify-between rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500">
-                      <span id="selected-language">English</span>
-                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                      </svg>
-                    </button>
-                    
-                    <div id="language-menu" class="hidden absolute bottom-full mb-2 w-full origin-bottom-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-                      <div class="py-1" role="none">
-                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">English</a>
-                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">हिन्दी</a>
-                        <a href="#" class="language-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">ਪੰਜਾਬੀ</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
+                <p class="text-xs leading-5 text-gray-400">&copy; 2025 Krishi Sahayak. All rights reserved.</p>
             </div>
-          </div>
-          <div class="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-            <p class="text-xs leading-5 text-gray-400">&copy; 2025 Krishi Sahayak. All rights reserved.</p>
-          </div>
         </div>
     </footer>
 
@@ -408,22 +342,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContentBody = document.getElementById('modal-content-body');
     const modalCloseBtn = document.getElementById('modal-close-btn');
 
-    // Footer Language Selector
-    const langMenuBtn = document.getElementById('language-menu-button');
-    const langMenu = document.getElementById('language-menu');
-    const selectedLang = document.getElementById('selected-language');
-    const langOptions = document.querySelectorAll('.language-option');
-
 
     // --- STATE MANAGEMENT ---
     let chatMessages = [ { sender: 'model', text: 'नमस्ते! मैं फार्म मित्र हूँ। आप खेती के बारे में कुछ भी पूछ सकते हैं।' } ];
     let isChatLoading = false;
-    let uploadedFileBase64 = null;
+    let uploadedImageDataUrl = null;
 
-
-    // --- GEMINI API CONFIG ---
-    const API_KEY = "AIzaSyBgAEdFV-v5jVUl1NY8KY7YaSexkf2FK_Q"; // Temproary api key just for testing purposes
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
 
     // --- MODAL FUNCTIONS ---
     function showModal(title, content) {
@@ -478,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleChatWindow() {
-         const isHidden = chatbotWindow.classList.contains('hidden');
+        const isHidden = chatbotWindow.classList.contains('hidden');
         if(isHidden) {
             chatbotWindow.classList.remove('hidden');
             setTimeout(() => {
@@ -492,19 +416,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function callGeminiAPI(payload, targetButton, title) {
+    async function handleAIAssist(prompt, imageUrl, targetButton, title) {
         const originalButtonText = targetButton.innerHTML;
         targetButton.disabled = true;
         targetButton.innerHTML = '🧠 Analyzing...';
 
         try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            let text = result.candidates?.[0]?.content?.parts?.[0]?.text.replace(/\*/g, '') || "No result found.";
+            const response = await puter.ai.chat(prompt, imageUrl, { model: "gpt-5-nano" });
+            let text = (response.message && response.message.content) ? response.message.content : response;
+            text = text.replace(/\*/g, '');
             
             let modalHTML;
             if (targetButton.id === 'task-suggestion-btn') {
@@ -526,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showModal(title, modalHTML);
 
         } catch (error) {
-            console.error("Gemini API Error:", error);
+            console.error("Puter.js AI Error:", error);
             showModal(title, `<p>Error connecting to the assistant.</p>`);
         } finally {
             targetButton.disabled = false;
@@ -544,26 +464,14 @@ document.addEventListener('DOMContentLoaded', () => {
         isChatLoading = true;
         renderChatMessages();
 
-        const chatHistory = chatMessages.map(msg => ({
-            role: msg.sender === 'user' ? 'user' : 'model',
-            parts: [{ text: msg.text }]
-        }));
-
         const systemPrompt = "You are a friendly and helpful agricultural assistant for farmers in India. Your name is 'Farm Mitra'. You provide simple, clear, and actionable advice. Respond in the same language as the user's query. If the query is in Hinglish, respond in simple Hindi with some English words.";
 
-        const payload = { 
-            contents: chatHistory, 
-            systemInstruction: { parts: [{ text: systemPrompt }] } 
-        };
+        const context = chatMessages.slice(-4, -1).map(msg => `${msg.sender === 'user' ? 'User' : 'Mitra'}: ${msg.text}`).join('\n');
+        const fullPrompt = `${systemPrompt}\n\nRecent Conversation:\n${context}\n\nUser: ${userQuery}\nMitra:`;
 
         try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            const modelResponse = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I didn't understand.";
+            const response = await puter.ai.chat(fullPrompt, { model: "gpt-5-nano" });
+            const modelResponse = (response.message && response.message.content) ? response.message.content : response;
             chatMessages.push({ sender: 'model', text: modelResponse });
         } catch (error) {
             console.error("Chatbot error:", error);
@@ -579,35 +487,29 @@ document.addEventListener('DOMContentLoaded', () => {
     closeChatBtn.addEventListener('click', toggleChatWindow);
     chatForm.addEventListener('submit', handleChatSubmit);
 
-    // Modal listeners
     modalCloseBtn.addEventListener('click', hideModal);
     modalBackdrop.addEventListener('click', hideModal);
 
     marketAnalysisBtn.addEventListener('click', () => {
-        const prompt = "I'm a farmer in Prayagraj, UP. It's mid-September. Current mandi prices are: Paddy at ₹2,185/quintal, Maize at ₹1,950/quintal, and Moong at ₹7,750/quintal. Provide a one-sentence analysis for each crop on whether to sell now or wait. Keep it simple and actionable. Respond in English.";
-        const payload = { contents: [{ parts: [{ text: prompt }] }] };
-        callGeminiAPI(payload, marketAnalysisBtn, "Market Price Analysis");
+        const prompt = "I'm a farmer in Lucknow, UP. It's mid-September. Current mandi prices are: Paddy at ₹2,185/quintal, Maize at ₹1,950/quintal, and Moong at ₹7,750/quintal. Provide a one-sentence analysis for each crop on whether to sell now or wait. Keep it simple and actionable. Respond in English.";
+        handleAIAssist(prompt, null, marketAnalysisBtn, "Market Price Analysis");
     });
     
     taskSuggestionBtn.addEventListener('click', () => {
-        const prompt = "I am a farmer in Prayagraj, UP. Today is September 15th. My Paddy crop is at the grain filling stage (80%), and my Maize is almost ready for harvest (90%). What are the 2-3 most critical tasks I should focus on? Please list them as a numbered list (e.g., '1. Task one description'). Respond in English.";
-        const payload = { contents: [{ parts: [{ text: prompt }] }] };
-        callGeminiAPI(payload, taskSuggestionBtn, "AI Task Suggestion");
+        const prompt = "I am a farmer in Lucknow, UP. Today is September 15th. My Paddy crop is at the grain filling stage (80%), and my Maize is almost ready for harvest (90%). What are the 2-3 most critical tasks I should focus on? Please list them as a numbered list (e.g., '1. Task one description'). Respond in English.";
+        handleAIAssist(prompt, null, taskSuggestionBtn, "AI Task Suggestion");
     });
 
     financialAnalysisBtn.addEventListener('click', () => {
-        const prompt = `I am a farmer in Prayagraj, UP. For the current Kharif season, my financials are: Total Expenses ₹45,500 (Seeds: ₹12,000, Fertilizer/Pesticides: ₹18,500, Labor/Irrigation: ₹15,000) and Projected Revenue is ₹92,000. My net profit is estimated at ₹46,500. Provide two simple, actionable suggestions to either reduce expenses or increase revenue for the next season, based on this breakdown. Respond in English.`;
-        const payload = { contents: [{ parts: [{ text: prompt }] }] };
-        callGeminiAPI(payload, financialAnalysisBtn, "AI Financial Analysis");
+        const prompt = `I am a farmer in Lucknow, UP. For the current Kharif season, my financials are: Total Expenses ₹45,500 (Seeds: ₹12,000, Fertilizer/Pesticides: ₹18,500, Labor/Irrigation: ₹15,000) and Projected Revenue is ₹92,000. My net profit is estimated at ₹46,500. Provide two simple, actionable suggestions to either reduce expenses or increase revenue for the next season, based on this breakdown. Respond in English.`;
+        handleAIAssist(prompt, null, financialAnalysisBtn, "AI Financial Analysis");
     });
 
     weatherAdvisoryBtn.addEventListener('click', () => {
-        const prompt = `I am a farmer in Prayagraj, UP. Today's weather is 29°C, partly cloudy, with 78% humidity. My current crops are Paddy (at grain filling stage) and Maize (ready for harvest). Give me one simple, actionable piece of advice based on this information. Respond in English.`;
-        const payload = { contents: [{ parts: [{ text: prompt }] }] };
-        callGeminiAPI(payload, weatherAdvisoryBtn, "AI Weather Advisory");
+        const prompt = `I am a farmer in Lucknow, UP. Today's weather is 29°C, partly cloudy, with 78% humidity. My current crops are Paddy (at grain filling stage) and Maize (ready for harvest). Give me one simple, actionable piece of advice based on this information. Respond in English.`;
+        handleAIAssist(prompt, null, weatherAdvisoryBtn, "AI Weather Advisory");
     });
 
-    // Image Upload & Diagnosis Listeners
     uploadBtn.addEventListener('click', () => imageUpload.click());
 
     imageUpload.addEventListener('change', (event) => {
@@ -616,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
             diagnoseBtn.disabled = false;
             const reader = new FileReader();
             reader.onload = (e) => {
-                uploadedFileBase64 = e.target.result.split(',')[1];
+                uploadedImageDataUrl = e.target.result;
                 imagePreview.src = e.target.result;
                 imagePreviewContainer.classList.remove('hidden');
             };
@@ -625,41 +527,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     diagnoseBtn.addEventListener('click', () => {
-        if (uploadedFileBase64) {
+        if (uploadedImageDataUrl) {
             const prompt = "You are an expert plant pathologist serving small farmers in India. Identify the disease or pest in this image. Provide a clear, simple diagnosis and suggest 1-2 low-cost, actionable remedies. If the image is not a plant, state that clearly. Format the response with 'Diagnosis:' and 'Remedy:' labels. Respond in English.";
-            const payload = {
-                contents: [{
-                    parts: [
-                        { text: prompt },
-                        { inlineData: { mimeType: "image/jpeg", data: uploadedFileBase64 } }
-                    ]
-                }],
-            };
-            callGeminiAPI(payload, diagnoseBtn, "AI Disease Diagnosis");
+            handleAIAssist(prompt, uploadedImageDataUrl, diagnoseBtn, "AI Disease Diagnosis");
         }
     });
-
-    // Language selector logic
-    if (langMenuBtn) {
-        langMenuBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            langMenu.classList.toggle('hidden');
-        });
-
-        langOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.preventDefault();
-                selectedLang.textContent = e.target.textContent;
-                langMenu.classList.add('hidden');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!langMenu.classList.contains('hidden') && !langMenuBtn.contains(e.target)) {
-                langMenu.classList.add('hidden');
-            }
-        });
-    }
 
     // --- INITIAL RENDER ---
     renderChatButton();
